@@ -1,9 +1,31 @@
-import React from 'react';
-import { Menu, X, ChevronDown, Facebook, Twitter, Linkedin } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X as CloseIcon, ChevronDown, Facebook, XIcon, Linkedin } from 'lucide-react';
+import logo from './assets/logo.png';
+import axios from 'axios';
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [openFaq, setOpenFaq] = React.useState<number | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitStatus('loading');
+    try {
+      await axios.post('http://localhost:3001/api/send-to-discord', formData);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    }
+  };
 
   const services = [
     {
@@ -78,6 +100,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
+              <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" />
               <span className="text-xl font-bold">アイラフ</span>
             </div>
             <div className="hidden md:flex items-center space-x-4">
@@ -87,7 +110,7 @@ function App() {
             </div>
             <div className="md:hidden flex items-center">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X /> : <Menu />}
+                {isMenuOpen ? <CloseIcon /> : <Menu />}
               </button>
             </div>
           </div>
@@ -98,6 +121,10 @@ function App() {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="flex items-center px-3 py-2">
+              <img src={logo} alt="アイラフ" className="h-6 w-auto mr-2" />
+              <span className="font-semibold">アイラフ</span>
+            </div>
             <a href="#services" className="block px-3 py-2 text-gray-700">事業内容</a>
             <a href="#team" className="block px-3 py-2 text-gray-700">チーム</a>
             <a href="#contact" className="block px-3 py-2 text-gray-700">お問い合わせ</a>
@@ -108,6 +135,7 @@ function App() {
       {/* Hero Section */}
       <div className="bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+          <img src={logo} alt="アイラフ" className="h-32 w-auto mx-auto mb-8" />
           <h1 className="text-4xl font-bold mb-4">
             変わる時代、変わる働き方。<br />
             アイラフが、あなたの"一歩先"を照らします。
@@ -187,12 +215,15 @@ function App() {
       <section id="contact" className="py-20 bg-gray-900 text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">お問い合わせ</h2>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">お名前</label>
               <input
                 type="text"
                 id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
                 className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
                 required
               />
@@ -202,6 +233,9 @@ function App() {
               <input
                 type="email"
                 id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
                 required
               />
@@ -210,6 +244,9 @@ function App() {
               <label htmlFor="message" className="block text-sm font-medium mb-2">お問い合わせ内容</label>
               <textarea
                 id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
                 rows={4}
                 className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
                 required
@@ -218,9 +255,16 @@ function App() {
             <button
               type="submit"
               className="w-full bg-yellow-400 text-gray-900 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors"
+              disabled={submitStatus === 'loading'}
             >
-              送信する
+              {submitStatus === 'loading' ? '送信中...' : '送信する'}
             </button>
+            {submitStatus === 'success' && (
+              <p className="text-green-400 text-center">お問い合わせが正常に送信されました。</p>
+            )}
+            {submitStatus === 'error' && (
+              <p className="text-red-400 text-center">送信中にエラーが発生しました。もう一度お試しください。</p>
+            )}
           </form>
         </div>
       </section>
@@ -230,6 +274,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
+              <img src={logo} alt="アイラフ" className="h-12 w-auto mb-4" />
               <h3 className="text-white text-lg font-semibold mb-4">アイラフ合同会社</h3>
               <p>〒124-0002</p>
               <p>東京都葛飾区堀切４丁目２３番地５</p>
@@ -246,7 +291,7 @@ function App() {
               <h3 className="text-white text-lg font-semibold mb-4">SNS</h3>
               <div className="flex space-x-4">
                 <a href="#" className="hover:text-white"><Facebook /></a>
-                <a href="#" className="hover:text-white"><Twitter /></a>
+                <a href="#" className="hover:text-white"><XIcon /></a>
                 <a href="#" className="hover:text-white"><Linkedin /></a>
               </div>
             </div>
