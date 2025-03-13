@@ -8,6 +8,8 @@
 - [React](https://reactjs.org/): ユーザーインターフェース構築のためのJavaScriptライブラリ
 - [TypeScript](https://www.typescriptlang.org/): 型安全な JavaScript
 - [TailwindCSS](https://tailwindcss.com/): ユーティリティファーストのCSSフレームワーク
+- [React Router](https://reactrouter.com/): Reactアプリケーションのルーティング
+- [Lucide React](https://lucide.dev/): モダンなアイコンライブラリ
 
 ## 機能概要
 
@@ -15,9 +17,15 @@
 - ナビゲーションメニュー（デスクトップ・モバイル対応）
 - ヒーローセクション
 - 事業内容の紹介
-- チームメンバーの紹介
+- チームメンバーの詳細紹介ページ
+  - 各メンバーの経歴と実績を詳細に表示
+  - 外部公演や記事へのリンク
+- 電子公告ページ
+  - 法的要件を満たす公告情報の掲載
 - よくある質問（FAQ）セクション
 - お問い合わせ情報
+- 会社情報ページ
+- プライバシーポリシーと利用規約ページ
 
 ## 環境構築手順
 
@@ -47,6 +55,27 @@ npm run dev
 - `npm run build`: プロダクション用にアプリケーションをビルドします。
 - `npm run lint`: ESLintを使用してコードをリントします。
 - `npm run preview`: ビルドされたアプリケーションをプレビューします。
+
+## Netlifyでのデプロイ
+
+このプロジェクトはNetlifyでのデプロイに対応しています。以下の設定が追加されています：
+
+1. `netlify.toml`ファイル：
+   - ビルド設定とリダイレクトルールを定義しています。
+   - シングルページアプリケーション（SPA）のルーティングをサポートします。
+
+2. デプロイ手順：
+   - GitHubリポジトリをNetlifyに連携します。
+   - ビルド設定：
+     - Build command: `npm run build`
+     - Publish directory: `dist`
+   - 環境変数：必要に応じてNetlifyダッシュボードで設定してください。
+
+3. カスタムドメインの設定：
+   - Netlifyダッシュボードの "Domain settings" から設定可能です。
+
+4. HTTPS：
+   - Netlifyは自動的にLet's Encryptを使用してHTTPS証明書を提供します。
 
 ## セキュリティに関する注意事項
 
