@@ -1,31 +1,14 @@
 import React, { useState } from 'react';
-import { Menu, X as CloseIcon, ChevronDown, Facebook, XIcon, Linkedin } from 'lucide-react';
+import { Menu, X as CloseIcon, ChevronDown, Facebook, XIcon, Linkedin, Mail } from 'lucide-react';
 import logo from './assets/logo.png';
-import axios from 'axios';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({ ...prevData, [name]: value }));
-  };
+  const contactEmail = 'contact@ailaf.com'; // 実際の問い合わせ用メールアドレスに置き換えてください
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitStatus('loading');
-    try {
-      await axios.post('http://localhost:3001/api/send-to-discord', formData);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    }
-  };
+  const currentYear = new Date().getFullYear();
 
   const services = [
     {
@@ -215,57 +198,16 @@ function App() {
       <section id="contact" className="py-20 bg-gray-900 text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">お問い合わせ</h2>
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2">お名前</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2">メールアドレス</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">お問い合わせ内容</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={4}
-                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-yellow-400 text-gray-900 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors"
-              disabled={submitStatus === 'loading'}
+          <div className="text-center">
+            <p className="mb-6">お問い合わせは以下のメールアドレスまでお願いいたします。</p>
+            <a
+              href={`mailto:${contactEmail}`}
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700"
             >
-              {submitStatus === 'loading' ? '送信中...' : '送信する'}
-            </button>
-            {submitStatus === 'success' && (
-              <p className="text-green-400 text-center">お問い合わせが正常に送信されました。</p>
-            )}
-            {submitStatus === 'error' && (
-              <p className="text-red-400 text-center">送信中にエラーが発生しました。もう一度お試しください。</p>
-            )}
-          </form>
+              <Mail className="mr-2" />
+              {contactEmail}
+            </a>
+          </div>
         </div>
       </section>
 
@@ -297,7 +239,7 @@ function App() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center">
-            <p>&copy; 2024 アイラフ合同会社. All rights reserved.</p>
+            <p>&copy; {currentYear} アイラフ合同会社. All rights reserved.</p>
           </div>
         </div>
       </footer>
