@@ -97,6 +97,7 @@ function App() {
                 <Link to="/team-members" className="text-gray-700 hover:text-gray-900">チーム</Link>
                 <Link to="/#contact" className="text-gray-700 hover:text-gray-900">お問い合わせ</Link>
                 <Link to="/company-info" className="text-gray-700 hover:text-gray-900">会社情報</Link>
+                <Link to="/electronic-public-notice" className="hover:text-white">電子公告</Link>
               </div>
               <div className="md:hidden flex items-center">
                 <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -119,6 +120,7 @@ function App() {
               <Link to="/team-members" className="block px-3 py-2 text-gray-700">チーム</Link>
               <Link to="/#contact" className="block px-3 py-2 text-gray-700">お問い合わせ</Link>
               <Link to="/company-info" className="block px-3 py-2 text-gray-700">会社情報</Link>
+              <Link to="/electronic-public-notice" className="hover:text-white">電子公告</Link>
             </div>
           </div>
         )}
@@ -251,9 +253,6 @@ function App() {
                   <li><Link to="/#contact" className="hover:text-white">お問い合わせ</Link></li>
                   <li><Link to="/company-info" className="hover:text-white">会社情報</Link></li>
                   <li><Link to="/electronic-public-notice" className="hover:text-white">電子公告</Link></li>
-                  <li><Link to="/privacy-policy" className="hover:text-white">プライバシーポリシー</Link></li>
-                  <li><Link to="/terms-of-service" className="hover:text-white">利用規約</Link></li>
-                  <li><Link to="/sitemap" className="hover:text-white">サイトマップ</Link></li>
                 </ul>
               </div>
               <div>
