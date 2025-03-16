@@ -19,21 +19,6 @@ function App() {
 
   const services = [
     {
-      title: 'PTA活動の代行及びマッチング',
-      description: 'PTA活動の代行及びマッチングサービスの提供',
-      icon: '👥'
-    },
-    {
-      title: 'PTA活動サポートシステム',
-      description: 'PTA活動サポートに関するシステムの構築・運営',
-      icon: '💻'
-    },
-    {
-      title: '人材派遣',
-      description: 'シルバー人材や地域人材の派遣',
-      icon: '🤝'
-    },
-    {
       title: 'ビジネストランスフォーメーション',
       description: 'ビジネストランスフォーメーションコンサルティング',
       icon: '📈'
@@ -47,6 +32,21 @@ function App() {
       title: '経営コンサルティング',
       description: '経営コンサルティング',
       icon: '📊'
+    },
+    {
+      title: 'PTA活動の代行及びマッチング',
+      description: 'Comming soon',
+      icon: '👥'
+    },
+    {
+      title: 'PTA活動サポートシステム',
+      description: 'Comming soon',
+      icon: '💻'
+    },
+    {
+      title: '人材派遣',
+      description: 'Comming soon',
+      icon: '🤝'
     }
   ];
 
@@ -70,12 +70,8 @@ function App() {
 
   const faqs = [
     {
-      question: 'PTA活動の代行サービスの料金はいくらですか？',
-      answer: '活動内容や時間によって料金は異なります。詳細はお問い合わせください。'
-    },
-    {
       question: 'サービスの対象地域はどこですか？',
-      answer: '現在は東京都内を中心にサービスを提供しています。'
+      answer: '現在は東京都内および近郊を中心にサービスを提供しています。'
     },
     {
       question: 'コンサルティングの期間はどのくらいですか？',
@@ -140,7 +136,9 @@ function App() {
                   </h1>
                   <p className="text-xl text-gray-300 mb-8">
                     現代社会の多様化するライフスタイル。アイラフは新しい働き方を提案して、<br />
-                    未来の社会の在り方を創造する。
+                    未来の社会の在り方を創造する。<br />
+                    BX/DXが必要だと思っているけど、何をしたらいいのかわからない…<br />
+                    そんな皆様の最初の一歩を後押しします。
                   </p>
                   <a href="#contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
                     お問い合わせ
@@ -243,7 +241,7 @@ function App() {
                 <img src={logo} alt="アイラフ" className="h-12 w-auto mb-4" />
                 <h3 className="text-white text-lg font-semibold mb-4">アイラフ合同会社</h3>
                 <p>所在地: 東京都内</p>
-                <p className="text-sm mt-2">※プライバシー保護のため、詳細な住所は非公開としております。</p>
+                <p className="text-sm mt-2">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
               </div>
               <div>
                 <h3 className="text-white text-lg font-semibold mb-4">リンク</h3>

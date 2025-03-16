@@ -40,6 +40,11 @@
    npm install
    ```
 
+注意: このプロジェクトは react-router-dom を使用しています。package.jsonに記載されていますが、もし問題が発生した場合は以下のコマンドで個別にインストールできます：
+```
+npm install react-router-dom
+```
+
 ## 起動方法
 
 開発サーバーを起動します：
