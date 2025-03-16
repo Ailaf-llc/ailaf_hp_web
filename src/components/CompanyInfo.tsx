@@ -40,19 +40,19 @@ const CompanyInfo: React.FC = () => {
                                 <dt className="text-sm font-medium text-gray-500">所在地</dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     東京都内
-                                    <p className="text-xs text-gray-500 mt-1">※プライバシー保護のため、詳細な住所は非公開としております。</p>
+                                    <p className="text-xs text-gray-500 mt-1">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
                                 </dd>
                             </div>
                             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt className="text-sm font-medium text-gray-500">主な事業内容</dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     <ul className="list-disc pl-5">
-                                        <li>PTA活動の代行及びマッチング</li>
-                                        <li>PTA活動サポートシステムの構築・運営</li>
-                                        <li>人材派遣</li>
                                         <li>ビジネストランスフォーメーションコンサルティング</li>
                                         <li>デジタルトランスフォーメーションコンサルティング</li>
                                         <li>経営コンサルティング</li>
+                                        <li>PTA活動の代行及びマッチング</li>
+                                        <li>PTA活動サポートシステムの構築・運営</li>
+                                        <li>人材派遣</li>
                                     </ul>
                                 </dd>
                             </div>
