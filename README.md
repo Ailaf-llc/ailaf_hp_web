@@ -76,6 +76,11 @@ npm run dev
 
 3. カスタムドメインの設定：
    - Netlifyダッシュボードの "Domain settings" から設定可能です。
+   - 以下のDNSサーバーを取得したドメインサイト側に設定します
+     - dns1.p04.nsone.net
+     - dns2.p04.nsone.net
+     - dns3.p04.nsone.net
+     - dns4.p04.nsone.net
 
 4. HTTPS：
    - Netlifyは自動的にLet's Encryptを使用してHTTPS証明書を提供します。
