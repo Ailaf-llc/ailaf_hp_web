@@ -332,8 +332,8 @@ function App() {
 {/*                 <li><Link to="/electronic-public-notice" className="hover:text-white">電子公告</Link></li> */}
               </ul>
             </div>
-            <div>
-{/*               <h3 className="text-white text-lg font-semibold mb-4">SNS</h3>
+{/*             <div>
+              <h3 className="text-white text-lg font-semibold mb-4">SNS</h3>
               <div className="flex space-x-4">
                 <a href="#" className="hover:text-white"><Facebook /></a>
                 <a href="#" className="hover:text-white"><XIcon /></a>
