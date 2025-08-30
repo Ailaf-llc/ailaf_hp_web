@@ -28,6 +28,9 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children }) => {
   );
 };
 import logo from './assets/logo.png';
+import miyanoImage from './assets/miyano.jpg';
+import yamazoeImage from './assets/yamazoe.jpg';
+import tabataImage from './assets/tabata.jpg';
 import ElectronicPublicNotice from './components/ElectronicPublicNotice';
 import CompanyInfo from './components/CompanyInfo';
 import PrivacyPolicy from './components/PrivacyPolicy';
@@ -90,21 +93,21 @@ function App() {
   ];
 
   const team = [
-    {
-      name: '宮野 聖史',
-      role: '代表社員',
-      image: './assets/miyano.jpg'
-    },
-    {
-      name: '山添 達郎',
-      role: '業務執行社員',
-      image: './assets/yamazoe.jpg'
-    },
-    {
-      name: '田畑 佑樹',
-      role: '業務執行社員',
-      image: './assets/tabata.jpg'
-    }
+    {
+      name: '宮野 聖史',
+      role: '代表社員',
+      image: miyanoImage // './assets/miyano.jpg' から変更
+    },
+    {
+      name: '山添 達郎',
+      role: '業務執行社員',
+      image: yamazoeImage // './assets/yamazoe.jpg' から変更
+    },
+    {
+      name: '田畑 佑樹',
+      role: '業務執行社員',
+      image: tabataImage // './assets/tabata.jpg' から変更
+    }
   ];
 
   const faqs = [
