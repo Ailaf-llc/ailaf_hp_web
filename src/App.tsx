@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X as CloseIcon, ChevronDown, Facebook, XIcon, Linkedin, Mail } from 'lucide-react';
+import { BarChart3, Bot, Briefcase, Users } from 'lucide-react';
 
 interface NavLinkProps {
   to: string;
@@ -69,27 +70,44 @@ function App() {
     }
   }, [location, navigate]);
 
+  // 2. services配列のiconをSVGアイコンコンポーネントに変更します
   const services = [
     {
       title: 'ビジネストランスフォーメーション',
-      description: 'ビジネストランスフォーメーションコンサルティング',
-      icon: '📈'
+      description: '業務プロセスの見直しから組織文化の変革まで、事業全体の成長を支援します。',
+      icon: <Briefcase className="w-10 h-10 text-blue-600" />
     },
     {
       title: 'デジタルトランスフォーメーション',
-      description: 'デジタルトランスフォーメーションコンサルティング',
-      icon: '🌐'
+      description: 'AIやクラウド技術を駆使し、非効率な業務を自動化、データに基づいた経営を実現します。',
+      icon: <Bot className="w-10 h-10 text-blue-600" />
     },
     {
       title: '経営コンサルティング',
-      description: '経営コンサルティング',
-      icon: '📊'
+      description: '新規事業の立案や資金調達など、企業の持続的な成長に向けた戦略を共に描きます。',
+      icon: <BarChart3 className="w-10 h-10 text-blue-600" />
     },
     {
       title: 'マインドセットコーチング',
       description: '将来を担う若い世代に向けた人生設計支援サービスを提供します。',
-      icon: '👥'
+      icon: <Users className="w-10 h-10 text-blue-600" />
     }
+  ];
+
+  // 3. 「強み」セクションで表示するためのデータ配列を新しく定義します
+  const strengths = [
+    {
+      title: '現場に寄り添う伴走支援',
+      description: '計画倒れにさせません。お客様のチームの一員として、プロジェクトの実行から定着まで責任を持ってサポートします。',
+    },
+    {
+      title: '最新技術への深い知見',
+      description: '生成AIやクラウドネイティブ技術など、常に最新の動向を捉え、お客様のビジネスに最適なソリューションを提案します。',
+    },
+    {
+      title: '人 と 組織 を育むアプローチ',
+      description: 'ツールの導入だけでなく、社員一人ひとりのスキルアップと、変化に強い組織文化の醸成を重視します。',
+    },
   ];
 
   const team = [
@@ -199,51 +217,86 @@ function App() {
       <Routes>
         <Route path="/" element={
           <>
-            {/* Hero Section */}
-            <div className="bg-gray-900 text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-                <img src={logo} alt="アイラフ" className="h-32 w-auto mx-auto mb-8" />
-                <h1 className="text-4xl font-bold mb-4">
-                  変わる時代、変わる働き方。<br />
-                  アイラフが、あなたの"一歩先"を照らします。
-                </h1>
-                <p className="text-xl text-gray-300 mb-8">
-                  私たちは、中小企業や個人事業主の皆さまが直面する<br />
-                  「業務の複雑さ」や「デジタル化の遅れ」といった課題を解決し、<br />
-                  よりシンプルで強い組織づくりをお手伝いします。<br />
-                  たとえば、業務の流れを整理して効率化したり、<br />
-                  デジタルツールやクラウドサービスを導入して負担を減らしたりすることから始めます。<br />
-                  <br />
-                  こうした取り組みは、ビジネスの進め方そのものを変革する「ビジネストランスフォーメーション（BX）」、<br />
-                  そしてIT活用による「デジタルトランスフォーメーション（DX）」と呼ばれています。<br />
-                  アイラフは、これらを難しい言葉ではなく、現場で役立つかたちで支援していきます。<br />
-                  <br />
-                  また、中高生を対象としたマインドセットコーチングを通じて、<br />
-                  人生設計や学習習慣づくりをサポートし、未来を担う世代の成長にも貢献しています。<br />
-                </p>
-{/*                 <a href="#contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
-                  お問い合わせ
-                </a> */}
-              </div>
-            </div>
+{/* Hero Section */}
+<div className="bg-gray-900 text-white">
+  {/* 背景画像を追加する場合はここにスタイルを追加します */}
+  {/* 例: style={{ backgroundImage: `url(${heroImage})` }} className="bg-cover bg-center" */}
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <img src={logo} alt="アイラフ" className="h-24 w-auto mx-auto mb-6" />
+    <h1 className="text-4xl font-bold mb-4">
+      変わる時代、変わる働き方。<br />
+      あなたの"一歩先"を照らします。
+    </h1>
+
+    {/* 1. メッセージを短い文章に要約 */}
+    <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+      複雑な業務、遅れるデジタル化。そんな課題を「現場で役立つDX」で解決し、
+      シンプルで強い組織づくりを、計画から実行まで伴走支援します。
+    </p>
+
+    {/* 2. 解決できる課題を箇条書きで提示 */}
+    <div className="flex justify-center items-center gap-x-6 gap-y-2 flex-wrap mb-12">
+      <span className="flex items-center text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        業務プロセスの非効率
+      </span>
+      <span className="flex items-center text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        デジタル化の遅れ
+      </span>
+      <span className="flex items-center text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        ITツールの活用方法
+      </span>
+    </div>
+
+{/* お問い合わせボタン（準備中） */}
+<div className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-lg opacity-75">
+  お問い合わせ (準備中)
+</div>
+
+{/* ▼▼▼ メールアドレス設定後、以下のコメントアウトを解除してください ▼▼▼ */}
+{/*
+<a href="#contact" onClick={handleScroll} className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-500 transition-colors text-lg">
+  まずはお気軽にご相談ください
+</a>
+*/}
+  </div>
+</div>
 
             {/* Services Section */}
-<section id="services" className="py-20">
-  {/* ↓推奨：コンテナの最大幅を狭くして中央に寄せる */}
-  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-3xl font-bold text-center mb-12">事業内容</h2>
-    {/* ↓グリッドの列数を常に2列に固定 */}
-    <div className="grid grid-cols-2 gap-8">
-      {services.map((service, index) => (
-        <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-          <div className="text-4xl mb-4">{service.icon}</div>
-          <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-          <p className="text-gray-600">{service.description}</p>
+      <section id="services" className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">事業内容</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {services.map((service, index) => (
+              // カードのデザインを少し変更
+              <div key={index} className="bg-gray-50 p-8 rounded-lg transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-2">
+                <div className="mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
+                  {/* 4. Strengths Section (ここから新規追加) */}
+      <section id="strengths" className="py-20 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">アイラフが選ばれる理由</h2>
+            <p className="mt-4 text-lg text-gray-300">私たちは、お客様の成功を第一に考えた3つの強みを持っています。</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {strengths.map((strength, index) => (
+              <div key={index} className="bg-gray-800 p-8 rounded-lg">
+                <h3 className="text-xl font-semibold text-blue-400 mb-3">{`0${index + 1}. ${strength.title}`}</h3>
+                <p className="text-gray-300">{strength.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
             {/* Team Section */}
             <section id="team" className="py-20 bg-gray-50">
@@ -290,22 +343,27 @@ function App() {
               </div>
             </section>
 
-            {/* Contact Section */}
-            <section id="contact" className="py-20 bg-gray-900 text-white">
-              <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold text-center mb-12">お問い合わせ</h2>
-                <div className="text-center">
-                  <p className="mb-6">準備中</p>
-{/*                   <a */}
-{/*                     href={`mailto:${contactEmail}`} */}
-{/*                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700" */}
-{/*                  > */}
-{/*                    <Mail className="mr-2" /> */}
-{/*                    {contactEmail} */}
-{/*                  </a> */}
-                </div>
-              </div>
-            </section>
+{/* Contact Section */}
+<section id="contact" className="py-20 bg-gray-900 text-white">
+  <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 className="text-3xl font-bold mb-4">お問い合わせ</h2>
+    <p className="text-lg text-gray-300 mb-8">
+      現在、お問い合わせフォームの準備を進めております。<br />
+      ご不便をおかけしますが、開設まで今しばらくお待ちください。
+    </p>
+
+    {/* ▼▼▼ メールアドレス設定後、以下のコメントアウトを解除してください ▼▼▼ */}
+    {/*
+    <a
+      href={`mailto:${contactEmail}`} // contactEmail変数はAppコンポーネントの先頭で定義してください
+      className="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 transition-colors"
+    >
+      <Mail className="mr-2" />
+      メールでのお問い合わせ
+    </a>
+    */}
+  </div>
+</section>
           </>
         } />
         <Route path="/company-info" element={<CompanyInfo />} />
