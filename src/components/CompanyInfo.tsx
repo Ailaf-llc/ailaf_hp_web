@@ -1,4 +1,8 @@
 import React from 'react';
+import miyanoImage from '../assets/miyano.jpg';
+import yamazoeImage from '../assets/yamazoe.jpg';
+import tabataImage from '../assets/tabata.jpg';
+
 
 const CompanyInfo: React.FC = () => {
     return (
@@ -16,26 +20,32 @@ const CompanyInfo: React.FC = () => {
                     <p className="text-gray-700">また、中高生を対象としたマインドセットコーチングを通じて、人生設計や学習習慣づくりをサポートし、未来を担う世代の成長にも貢献しています。</p>
                 </section>
 
-                {/* メンバー */}
-                <section className="mb-16">
-                    <h2 className="text-2xl font-bold mb-6">メンバー</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div className="text-center">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop" alt="宮野 聖史" className="w-32 h-32 rounded-full mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold">宮野 聖史</h3>
+{/* メンバー */}
+<section className="mb-16">
+    <h2 className="text-2xl font-bold mb-6">メンバー</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* 宮野 聖史 */}
+        <div className="text-center">
+            {/* ↓ この行の src を修正します */}
+            <img src={miyanoImage} alt="宮野 聖史" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />
+            <h3 className="text-lg font-semibold">宮野 聖史</h3>
                             <p className="text-gray-600">代表社員</p>
                             <p className="text-sm text-gray-500 mt-2">早稲田大学大学院経営管理研究科（WBS）修了。大手企業にてデジタルトランスフォーメーション（DX）推進や新規事業開発に従事し、戦略立案から現場実装まで幅広く携わる。
 もっと直接的に社会貢献したいという思いから、2025年にアイラフ合同会社を共同設立。</p>
                         </div>
-                        <div className="text-center">
-                            <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop" alt="山添 達郎" className="w-32 h-32 rounded-full mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold">山添 達郎</h3>
-                            <p className="text-gray-600">業務執行社員</p>
+        {/* 山添 達郎 */}
+        <div className="text-center">
+            {/* ↓ この行の src を修正します */}
+            <img src={yamazoeImage} alt="山添 達郎" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />
+            <h3 className="text-lg font-semibold">山添 達郎</h3>
+            {/* ...（以下略）... */}
+            <p className="text-gray-600">業務執行社員</p>
                         </div>
-                        <div className="text-center">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop" alt="田畑 佑樹" className="w-32 h-32 rounded-full mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold">田畑 佑樹</h3>
-                            <p className="text-gray-600">業務執行社員</p>
+        {/* 田畑 佑樹 */}
+        <div className="text-center">
+            {/* ↓ この行の src を修正します */}
+            <img src={tabataImage} alt="田畑 佑樹" className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />
+            <h3 className="text-lg font-semibold">田畑 佑樹</h3>                            <p className="text-gray-600">業務執行社員</p>
                             <p className="text-sm text-gray-500 mt-2">インフラ企業および製薬企業でのDX推進を経験。この経験を活かし、多数の外部公演や記事執筆の実績あり</p>
                             <div className="mt-4 text-sm">
                                 <p className="mb-2">
