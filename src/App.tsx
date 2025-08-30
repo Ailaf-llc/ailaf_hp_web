@@ -83,19 +83,9 @@ function App() {
       icon: '📊'
     },
     {
-      title: 'PTA活動の代行及びマッチング',
-      description: 'Comming soon',
+      title: 'マインドセットコーチング',
+      description: '将来を担う若い世代に向けた人生設計支援サービスを提供します。',
       icon: '👥'
-    },
-    {
-      title: 'PTA活動サポートシステム',
-      description: 'Comming soon',
-      icon: '💻'
-    },
-    {
-      title: '人材派遣',
-      description: 'Comming soon',
-      icon: '🤝'
     }
   ];
 
@@ -120,11 +110,35 @@ function App() {
   const faqs = [
     {
       question: 'サービスの対象地域はどこですか？',
-      answer: '現在は東京都内および近郊を中心にサービスを提供しています。'
+      answer: '東京都内および近郊を中心にサービスを提供しています。完全オンラインでのご対応も可能ですので、日本全国からご利用いただけます。'
     },
     {
       question: 'コンサルティングの期間はどのくらいですか？',
-      answer: 'プロジェクトの規模や目的によって異なりますが、通常3ヶ月から1年程度です。'
+      answer: '完全に案件依存で、プロジェクトの規模や目的によって異なります。弊社の特性上、数週間から数か月単位の比較的短期プロジェクトが多い想定です。'
+    },
+    {
+      question: '対応可能な業種はありますか？',
+      answer: '特定の業種に限らず、幅広い分野の中小規模事業者様をご支援可能です。特に「業務プロセス改善」や「デジタル化」に課題を感じているお客様に適しています。まずは豪相談頂ければ幸いです。'
+    },
+    {
+      question: '相談の段階でもお願いできますか？',
+      answer: 'はい。明確な課題が固まっていない段階でもご相談いただけます。「何から手をつけて良いかわからない」という状況こそ、私たちが得意とする領域です。'
+    },
+    {
+      question: '費用感を知りたいのですが？',
+      answer: 'ご依頼内容や期間によって変動します。初回相談は無料で承っておりますので、お気軽にお問い合わせください。'
+    },
+    {
+      question: 'オンラインでの打ち合わせは可能ですか？',
+      answer: 'はい。オンラインミーティングツールを活用して、全国どこからでも打ち合わせ可能です。対面打ち合わせをご希望の場合はご相談ください。'
+    },
+    {
+      question: 'マインドセットコーチングは誰が対象ですか？',
+      answer: '主に中高生を対象としていますが、保護者の方との同席相談や、大学生・若手社会人への応用も可能です。'
+    },
+    {
+      question: 'コーチングの形式はどのようになりますか？',
+      answer: 'オンラインでの1on1セッションを基本とし、必要に応じて保護者同席や少人数グループでの実施も行っています。ご自宅等での対面実施もう。'
     }
   ];
 
@@ -136,7 +150,7 @@ function App() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/">
-                <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" />
+{/*                 <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" /> */}
                 <span className="text-xl font-bold">アイラフ</span>
               </Link>
             </div>
@@ -146,7 +160,6 @@ function App() {
               <NavLink to="#team">Our Expert Team</NavLink>
               <NavLink to="#contact">お問い合わせ</NavLink>
               <Link to="/company-info" className="text-gray-700 hover:text-gray-900">会社情報</Link>
-              <Link to="/electronic-public-notice" className="text-gray-700 hover:text-gray-900">電子公告</Link>
             </div>
             <div className="md:hidden flex items-center">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -162,7 +175,7 @@ function App() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <div className="flex items-center px-3 py-2">
-              <img src={logo} alt="アイラフ" className="h-6 w-auto mr-2" />
+{/*               <img alt="アイラフ" className="h-6 w-auto mr-2" /> */}
               <span className="font-semibold">アイラフ</span>
             </div>
             <Link to="/" className="block px-3 py-2 text-gray-700">ホーム</Link>
@@ -176,7 +189,6 @@ function App() {
               <span className="block px-3 py-2 text-gray-700">お問い合わせ</span>
             </NavLink>
             <Link to="/company-info" className="block px-3 py-2 text-gray-700">会社情報</Link>
-            <Link to="/electronic-public-notice" className="block px-3 py-2 text-gray-700">電子公告</Link>
           </div>
         </div>
       )}
@@ -187,16 +199,24 @@ function App() {
             {/* Hero Section */}
             <div className="bg-gray-900 text-white">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-                <img src={logo} alt="アイラフ" className="h-32 w-auto mx-auto mb-8" />
+{/*                 <img src={logo} alt="アイラフ" className="h-32 w-auto mx-auto mb-8" /> */}
                 <h1 className="text-4xl font-bold mb-4">
                   変わる時代、変わる働き方。<br />
                   アイラフが、あなたの"一歩先"を照らします。
                 </h1>
                 <p className="text-xl text-gray-300 mb-8">
-                  現代社会の多様化するライフスタイル。アイラフは新しい働き方を提案して、<br />
-                  未来の社会の在り方を創造する。<br />
-                  BX/DXが必要だと思っているけど、何をしたらいいのかわからない…<br />
-                  そんな皆様の最初の一歩を後押しします。
+                  私たちは、中小企業や個人事業主の皆さまが直面する<br />
+                  「業務の複雑さ」や「デジタル化の遅れ」といった課題を解決し、<br />
+                  よりシンプルで強い組織づくりをお手伝いします。<br />
+                  たとえば、業務の流れを整理して効率化したり、<br />
+                  デジタルツールやクラウドサービスを導入して負担を減らしたりすることから始めます。<br />
+                  <br />
+                  こうした取り組みは、ビジネスの進め方そのものを変革する「ビジネストランスフォーメーション（BX）」、<br />
+                  そしてIT活用による「デジタルトランスフォーメーション（DX）」と呼ばれています。<br />
+                  アイラフは、これらを難しい言葉ではなく、現場で役立つかたちで支援していきます。<br />
+                  <br />
+                  また、中高生を対象としたマインドセットコーチングを通じて、<br />
+                  人生設計や学習習慣づくりをサポートし、未来を担う世代の成長にも貢献しています。<br />
                 </p>
                 <a href="#contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
                   お問い合わせ
@@ -296,7 +316,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
-              <img src={logo} alt="アイラフ" className="h-12 w-auto mb-4" />
+{/*               <img src={logo} alt="アイラフ" className="h-12 w-auto mb-4" /> */}
               <h3 className="text-white text-lg font-semibold mb-4">アイラフ合同会社</h3>
               <p>所在地: 東京都内</p>
               <p className="text-sm mt-2">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
@@ -309,15 +329,15 @@ function App() {
                 <li><NavLink to="#team"><span className="hover:text-white">Our Expert Team</span></NavLink></li>
                 <li><NavLink to="#contact"><span className="hover:text-white">お問い合わせ</span></NavLink></li>
                 <li><Link to="/company-info" className="hover:text-white">会社情報</Link></li>
-                <li><Link to="/electronic-public-notice" className="hover:text-white">電子公告</Link></li>
+{/*                 <li><Link to="/electronic-public-notice" className="hover:text-white">電子公告</Link></li> */}
               </ul>
             </div>
             <div>
               <h3 className="text-white text-lg font-semibold mb-4">SNS</h3>
               <div className="flex space-x-4">
-                <a href="#" className="hover:text-white"><Facebook /></a>
-                <a href="#" className="hover:text-white"><XIcon /></a>
-                <a href="#" className="hover:text-white"><Linkedin /></a>
+{/*                 <a href="#" className="hover:text-white"><Facebook /></a> */}
+{/*                 <a href="#" className="hover:text-white"><XIcon /></a> 
+                <a href="#" className="hover:text-white"><Linkedin /></a>*/}
               </div>
             </div>
           </div>
