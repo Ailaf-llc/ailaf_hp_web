@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X as CloseIcon, ChevronDown, Facebook, XIcon, Linkedin, Mail } from 'lucide-react';
 import { BarChart3, Bot, Briefcase, Users } from 'lucide-react';
+import { LinkIcon } from 'lucide-react';
 
 interface NavLinkProps {
   to: string;
@@ -114,17 +115,27 @@ function App() {
     {
       name: '宮野 聖史',
       role: '代表社員',
-      image: miyanoImage // './assets/miyano.jpg' から変更
+      image: miyanoImage, // './assets/miyano.jpg' から変更
+      bio: '早稲田大学大学院経営管理研究科（WBS）修了。大手企業にてDX推進や新規事業開発に従事し、戦略立案から現場実装まで幅広く携わる。より直接的な社会貢献を目指し、2025年にアイラフを共同設立。',
+      links: []
     },
     {
       name: '山添 達郎',
       role: '業務執行社員',
-      image: yamazoeImage // './assets/yamazoe.jpg' から変更
+      image: yamazoeImage, // './assets/yamazoe.jpg' から変更
+      bio: 'デジタル広告と動画ソリューションで豊富な経験を持ち、営業・事業開発からパートナーシップ構築まで幅広く担当。現在はSaaSセールスとチームマネジメントを牽引中。',
+      links: []
     },
     {
       name: '田畑 佑樹',
       role: '業務執行社員',
-      image: tabataImage // './assets/tabata.jpg' から変更
+      image: tabataImage, // './assets/tabata.jpg' から変更,
+      bio: 'インフラ企業および製薬企業でのDX推進を経験。この経験を活かし、多数の外部公演や記事執筆の実績を持つ専門家。',
+      links: [
+        { title: 'Google Cloud: 生成AIのビジネス適用', url: 'https://cloud.google.com/blog/ja/topics/customers/chugai-pharm-generating-ai-to-drive-operational-efficiency-and-value-creation/' },
+        { title: 'AWS: 生成AIアプリの全社導入', url: 'https://aws.amazon.com/jp/solutions/case-studies/chugai-pharm/' },
+        { title: 'note: 生成AIアプリ開発を内製アジャイルで', url: 'https://note.chugai-pharm.co.jp/n/n2e7083b32b68?magazine_key=m5745f166b9de' }
+      ]
     }
   ];
 
@@ -166,7 +177,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="bg-white border-b">
+      <nav className="bg-white border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -179,8 +190,8 @@ function App() {
               <Link to="/" className="text-gray-700 hover:text-gray-900">ホーム</Link>
               <NavLink to="#services">事業内容</NavLink>
               <NavLink to="#team">Our Expert Team</NavLink>
-{/*               <NavLink to="#contact">お問い合わせ</NavLink> */}
-              <Link to="/company-info" className="text-gray-700 hover:text-gray-900">会社情報</Link>
+              {/* ▼▼▼ 「会社情報」をページ内リンクに変更 ▼▼▼ */}
+              <NavLink to="#company-profile">会社情報</NavLink>
             </div>
             <div className="md:hidden flex items-center">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -209,8 +220,10 @@ function App() {
 {/*             <NavLink to="#contact">
               <span className="block px-3 py-2 text-gray-700">お問い合わせ</span>
             </NavLink> */}
-            <Link to="/company-info" className="block px-3 py-2 text-gray-700">会社情報</Link>
-          </div>
+           {/* ▼▼▼ モバイルメニューもページ内リンクに変更 ▼▼▼ */}
+           <NavLink to="#company-profile">
+             <span className="block px-3 py-2 text-gray-700">会社情報</span>
+           </NavLink>
         </div>
       )}
 
@@ -298,25 +311,70 @@ function App() {
         </div>
       </section>
 
-            {/* Team Section */}
-            <section id="team" className="py-20 bg-gray-50">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold text-center mb-12">Our Expert Team</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {team.map((member, index) => (
-                    <div key={index} className="text-center">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                      />
-                      <h3 className="text-xl font-semibold">{member.name}</h3>
-                      <p className="text-gray-600">{member.role}</p>
-                    </div>
-                  ))}
-                </div>
+      {/* Team Section (リッチコンテンツ版) */}
+      <section id="team" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Our Expert Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {team.map((member, index) => (
+              <div key={index} className="text-center bg-white p-8 rounded-lg shadow-lg">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-gray-200"
+                />
+                <h3 className="text-xl font-semibold">{member.name}</h3>
+                <p className="text-blue-600 font-semibold mb-4">{member.role}</p>
+                <p className="text-gray-600 text-left text-sm mb-4">{member.bio}</p>
+                {member.links.length > 0 && (
+                  <div className="mt-4 pt-4 border-t">
+                    <h4 className="font-semibold text-left mb-2 text-sm">関連リンク</h4>
+                    <ul className="space-y-2">
+                      {member.links.map((link, linkIndex) => (
+                        <li key={linkIndex}>
+                          <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm flex items-start text-left">
+                            <LinkIcon className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
+                            <span>{link.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-            </section>
+            ))}
+          </div>
+        </div>
+      </section>
+
+  
+      {/* Company Profile Section (新規追加) */}
+      <section id="company-profile" className="py-20 bg-gray-800 text-gray-300">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center text-white mb-12">会社概要</h2>
+          <div className="bg-gray-900 shadow-lg overflow-hidden rounded-lg">
+            <dl>
+              {/* 各項目を交互の背景色で表示 */}
+              <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-400">商号</dt>
+                <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">アイラフ合同会社</dd>
+              </div>
+              <div className="bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-400">設立年月日</dt>
+                <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">2025年7月7日(令和7年7月7日)</dd>
+              </div>
+              {/* ... 他の会社情報項目も同様の構造で追加 ... */}
+              <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-400">所在地</dt>
+                <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
+                  東京都内
+                  <p className="text-xs text-gray-500 mt-1">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
 
             {/* FAQ Section */}
             <section className="py-20">
