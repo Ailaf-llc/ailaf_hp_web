@@ -150,7 +150,7 @@ function App() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link to="/">
-{/*                 <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" /> */}
+                <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" />
                 <span className="text-xl font-bold">アイラフ</span>
               </Link>
             </div>
@@ -175,7 +175,7 @@ function App() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <div className="flex items-center px-3 py-2">
-{/*               <img alt="アイラフ" className="h-6 w-auto mr-2" /> */}
+              <img alt="アイラフ" className="h-6 w-auto mr-2" />
               <span className="font-semibold">アイラフ</span>
             </div>
             <Link to="/" className="block px-3 py-2 text-gray-700">ホーム</Link>
@@ -199,7 +199,7 @@ function App() {
             {/* Hero Section */}
             <div className="bg-gray-900 text-white">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-{/*                 <img src={logo} alt="アイラフ" className="h-32 w-auto mx-auto mb-8" /> */}
+                <img src={logo} alt="アイラフ" className="h-32 w-auto mx-auto mb-8" />
                 <h1 className="text-4xl font-bold mb-4">
                   変わる時代、変わる働き方。<br />
                   アイラフが、あなたの"一歩先"を照らします。
@@ -316,7 +316,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
-{/*               <img src={logo} alt="アイラフ" className="h-12 w-auto mb-4" /> */}
+              <img src={logo} alt="アイラフ" className="h-12 w-auto mb-4" />
               <h3 className="text-white text-lg font-semibold mb-4">アイラフ合同会社</h3>
               <p>所在地: 東京都内</p>
               <p className="text-sm mt-2">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
@@ -333,13 +333,13 @@ function App() {
               </ul>
             </div>
             <div>
-              <h3 className="text-white text-lg font-semibold mb-4">SNS</h3>
+{/*               <h3 className="text-white text-lg font-semibold mb-4">SNS</h3>
               <div className="flex space-x-4">
-{/*                 <a href="#" className="hover:text-white"><Facebook /></a> */}
-{/*                 <a href="#" className="hover:text-white"><XIcon /></a> 
-                <a href="#" className="hover:text-white"><Linkedin /></a>*/}
+                <a href="#" className="hover:text-white"><Facebook /></a>
+                <a href="#" className="hover:text-white"><XIcon /></a>
+                <a href="#" className="hover:text-white"><Linkedin /></a>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center">
             <p>&copy; {currentYear} アイラフ合同会社. All rights reserved.</p>
