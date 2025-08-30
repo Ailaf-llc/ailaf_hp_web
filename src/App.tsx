@@ -93,17 +93,17 @@ function App() {
     {
       name: '宮野 聖史',
       role: '代表社員',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop'
+      image: './assets/miyano.jpg'
     },
     {
       name: '山添 達郎',
       role: '業務執行社員',
-      image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop'
+      image: './assets/yamazoe.jpg'
     },
     {
       name: '田畑 佑樹',
       role: '業務執行社員',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop'
+      image: './assets/tabata.jpg'
     }
   ];
 
