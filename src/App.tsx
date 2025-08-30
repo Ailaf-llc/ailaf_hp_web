@@ -158,7 +158,7 @@ function App() {
               <Link to="/" className="text-gray-700 hover:text-gray-900">ホーム</Link>
               <NavLink to="#services">事業内容</NavLink>
               <NavLink to="#team">Our Expert Team</NavLink>
-              <NavLink to="#contact">お問い合わせ</NavLink>
+{/*               <NavLink to="#contact">お問い合わせ</NavLink> */}
               <Link to="/company-info" className="text-gray-700 hover:text-gray-900">会社情報</Link>
             </div>
             <div className="md:hidden flex items-center">
@@ -185,9 +185,9 @@ function App() {
             <NavLink to="#team">
               <span className="block px-3 py-2 text-gray-700">Our Expert Team</span>
             </NavLink>
-            <NavLink to="#contact">
+{/*             <NavLink to="#contact">
               <span className="block px-3 py-2 text-gray-700">お問い合わせ</span>
-            </NavLink>
+            </NavLink> */}
             <Link to="/company-info" className="block px-3 py-2 text-gray-700">会社情報</Link>
           </div>
         </div>
@@ -218,9 +218,9 @@ function App() {
                   また、中高生を対象としたマインドセットコーチングを通じて、<br />
                   人生設計や学習習慣づくりをサポートし、未来を担う世代の成長にも貢献しています。<br />
                 </p>
-                <a href="#contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+{/*                 <a href="#contact" className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
                   お問い合わせ
-                </a>
+                </a> */}
               </div>
             </div>
 
