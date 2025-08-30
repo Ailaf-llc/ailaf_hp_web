@@ -286,11 +286,11 @@ function App() {
             </section>
 
             {/* Contact Section */}
-            <section id="contact" className="py-20 bg-gray-900 text-white">
+{/*             <section id="contact" className="py-20 bg-gray-900 text-white">
               <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl font-bold text-center mb-12">お問い合わせ</h2>
                 <div className="text-center">
-                  <p className="mb-6">お問い合わせは以下のよりメールにてお願いいたします。</p>
+                  <p className="mb-6">お問い合わせは以下よりお願いいたします。</p>
                   <a
                     href={`mailto:${contactEmail}`}
                     className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700"
@@ -301,7 +301,7 @@ function App() {
                 </div>
               </div>
             </section>
-          </>
+          </> */}
         } />
         <Route path="/company-info" element={<CompanyInfo />} />
         <Route path="/team-members" element={<TeamMembers />} />
@@ -325,9 +325,9 @@ function App() {
               <h3 className="text-white text-lg font-semibold mb-4">リンク</h3>
               <ul className="space-y-2">
                 <li><Link to="/" className="hover:text-white">ホーム</Link></li>
-                <li><NavLink to="#services"><span className="hover:text-white">事業内容</span></NavLink></li>
-                <li><NavLink to="#team"><span className="hover:text-white">Our Expert Team</span></NavLink></li>
-                <li><NavLink to="#contact"><span className="hover:text-white">お問い合わせ</span></NavLink></li>
+{/*                 <li><NavLink to="#services"><span className="hover:text-white">事業内容</span></NavLink></li> */}
+{/*                 <li><NavLink to="#team"><span className="hover:text-white">Our Expert Team</span></NavLink></li> */}
+{/*                 <li><NavLink to="#contact"><span className="hover:text-white">お問い合わせ</span></NavLink></li> */}
                 <li><Link to="/company-info" className="hover:text-white">会社情報</Link></li>
 {/*                 <li><Link to="/electronic-public-notice" className="hover:text-white">電子公告</Link></li> */}
               </ul>
