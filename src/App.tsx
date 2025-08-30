@@ -286,22 +286,22 @@ function App() {
             </section>
 
             {/* Contact Section */}
-{/*             <section id="contact" className="py-20 bg-gray-900 text-white">
+            <section id="contact" className="py-20 bg-gray-900 text-white">
               <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl font-bold text-center mb-12">お問い合わせ</h2>
                 <div className="text-center">
-                  <p className="mb-6">お問い合わせは以下よりお願いいたします。</p>
-                  <a
-                    href={`mailto:${contactEmail}`}
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700"
-                  >
-                    <Mail className="mr-2" />
-                    {contactEmail}
-                  </a>
+                  <p className="mb-6">準備中</p>
+{/*                   <a */}
+{/*                     href={`mailto:${contactEmail}`} */}
+{/*                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700" */}
+{/*                  > */}
+{/*                    <Mail className="mr-2" /> */}
+{/*                    {contactEmail} */}
+{/*                  </a> */}
                 </div>
               </div>
             </section>
-          </> */}
+          </>
         } />
         <Route path="/company-info" element={<CompanyInfo />} />
         <Route path="/team-members" element={<TeamMembers />} />
