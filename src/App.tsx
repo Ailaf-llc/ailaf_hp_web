@@ -174,108 +174,89 @@ function App() {
     }
   ];
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="bg-white border-b sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link to="/">
-                <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" />
-                <span className="text-xl font-bold">アイラフ</span>
-              </Link>
-            </div>
-            <div className="hidden md:flex items-center space-x-4">
-              <Link to="/" className="text-gray-700 hover:text-gray-900">ホーム</Link>
-              <NavLink to="#services">事業内容</NavLink>
-              <NavLink to="#team">Our Expert Team</NavLink>
-              {/* ▼▼▼ 「会社情報」をページ内リンクに変更 ▼▼▼ */}
-              <NavLink to="#company-profile">会社情報</NavLink>
-            </div>
-            <div className="md:hidden flex items-center">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <CloseIcon /> : <Menu />}
-              </button>
-            </div>
+ return (
+  <div className="min-h-screen bg-white">
+    {/* Navigation */}
+    <nav className="bg-white border-b sticky top-0 z-50">
+      {/* ...ナビゲーションバーの中身は変更なし... */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link to="/">
+              <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" />
+              <span className="text-xl font-bold">アイラフ</span>
+            </Link>
+          </div>
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/" className="text-gray-700 hover:text-gray-900">ホーム</Link>
+            <NavLink to="#services">事業内容</NavLink>
+            <NavLink to="#team">Our Expert Team</NavLink>
+            <NavLink to="#company-profile">会社情報</NavLink>
+          </div>
+          <div className="md:hidden flex items-center">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <CloseIcon /> : <Menu />}
+            </button>
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            <div className="flex items-center px-3 py-2">
-              <img alt="アイラフ" className="h-6 w-auto mr-2" />
-              <span className="font-semibold">アイラフ</span>
-            </div>
-            <Link to="/" className="block px-3 py-2 text-gray-700">ホーム</Link>
-            <NavLink to="#services">
-              <span className="block px-2 py-2 text-gray-700">事業内容</span>
-            </NavLink>
-            <NavLink to="#team">
-              <span className="block px-3 py-2 text-gray-700">Our Expert Team</span>
-            </NavLink>
-{/*             <NavLink to="#contact">
-              <span className="block px-3 py-2 text-gray-700">お問い合わせ</span>
-            </NavLink> */}
-           {/* ▼▼▼ モバイルメニューもページ内リンクに変更 ▼▼▼ */}
-           <NavLink to="#company-profile">
-             <span className="block px-3 py-2 text-gray-700">会社情報</span>
-           </NavLink>
+    {/* Mobile menu */}
+    {isMenuOpen && (
+      <div className="md:hidden">
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="flex items-center px-3 py-2">
+            <img src={logo} alt="アイラフ" className="h-6 w-auto mr-2" />
+            <span className="font-semibold">アイラフ</span>
+          </div>
+          <Link to="/" className="block px-3 py-2 text-gray-700">ホーム</Link>
+          <NavLink to="#services">
+            <span className="block px-2 py-2 text-gray-700">事業内容</span>
+          </NavLink>
+          <NavLink to="#team">
+            <span className="block px-3 py-2 text-gray-700">Our Expert Team</span>
+          </NavLink>
+          <NavLink to="#company-profile">
+            <span className="block px-3 py-2 text-gray-700">会社情報</span>
+          </NavLink>
         </div>
-      )}
+      </div>
+    )}
 
-      <Routes>
-        <Route path="/" element={
-          <>
-{/* Hero Section */}
-<div className="bg-gray-900 text-white">
-  {/* 背景画像を追加する場合はここにスタイルを追加します */}
-  {/* 例: style={{ backgroundImage: `url(${heroImage})` }} className="bg-cover bg-center" */}
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-    <img src={logo} alt="アイラフ" className="h-24 w-auto mx-auto mb-6" />
-    <h1 className="text-4xl font-bold mb-4">
-      変わる時代、変わる働き方。<br />
-      あなたの"一歩先"を照らします。
-    </h1>
-
-    {/* 1. メッセージを短い文章に要約 */}
-    <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
-      複雑な業務、遅れるデジタル化。そんな課題を「現場で役立つDX」で解決し、
-      シンプルで強い組織づくりを、計画から実行まで伴走支援します。
-    </p>
-
-    {/* 2. 解決できる課題を箇条書きで提示 */}
-    <div className="flex justify-center items-center gap-x-6 gap-y-2 flex-wrap mb-12">
-      <span className="flex items-center text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-        業務プロセスの非効率
-      </span>
-      <span className="flex items-center text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-        デジタル化の遅れ
-      </span>
-      <span className="flex items-center text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-        ITツールの活用方法
-      </span>
+    {/* ▼▼▼ ここから <Routes> と <Route> を削除し、セクションを直接配置します ▼▼▼ */}
+    
+    {/* Hero Section */}
+    <div className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+        <img src={logo} alt="アイラフ" className="h-24 w-auto mx-auto mb-6" />
+        <h1 className="text-4xl font-bold mb-4">
+          変わる時代、変わる働き方。<br />
+          あなたの"一歩先"を照らします。
+        </h1>
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+          複雑な業務、遅れるデジタル化。そんな課題を「現場で役立つDX」で解決し、
+          シンプルで強い組織づくりを、計画から実行まで伴走支援します。
+        </p>
+        <div className="flex justify-center items-center gap-x-6 gap-y-2 flex-wrap mb-12">
+          <span className="flex items-center text-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            業務プロセスの非効率
+          </span>
+          <span className="flex items-center text-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            デジタル化の遅れ
+          </span>
+          <span className="flex items-center text-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            ITツールの活用方法
+          </span>
+        </div>
+        <div className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-lg opacity-75">
+          お問い合わせ (準備中)
+        </div>
+      </div>
     </div>
-
-{/* お問い合わせボタン（準備中） */}
-<div className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-lg opacity-75">
-  お問い合わせ (準備中)
-</div>
-
-{/* ▼▼▼ メールアドレス設定後、以下のコメントアウトを解除してください ▼▼▼ */}
-{/*
-<a href="#contact" onClick={handleScroll} className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-500 transition-colors text-lg">
-  まずはお気軽にご相談ください
-</a>
-*/}
-  </div>
-</div>
 
             {/* Services Section */}
       <section id="services" className="py-20">
