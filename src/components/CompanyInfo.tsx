@@ -40,6 +40,7 @@ const CompanyInfo: React.FC = () => {
             <h3 className="text-lg font-semibold">山添 達郎</h3>
             {/* ...（以下略）... */}
             <p className="text-gray-600">業務執行社員</p>
+                            <p className="text-sm text-gray-500 mt-2">デジタル広告と動画ソリューションで豊富な経験を持ち、営業・事業開発からパートナーシップ構築まで幅広く担当。現在はSaaSセールスとチームマネジメントを牽引中。</p>
                         </div>
         {/* 田畑 佑樹 */}
         <div className="text-center">
