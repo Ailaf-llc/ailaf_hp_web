@@ -180,7 +180,7 @@ function App() {
             </div>
             <Link to="/" className="block px-3 py-2 text-gray-700">ホーム</Link>
             <NavLink to="#services">
-              <span className="block px-3 py-2 text-gray-700">事業内容</span>
+              <span className="block px-2 py-2 text-gray-700">事業内容</span>
             </NavLink>
             <NavLink to="#team">
               <span className="block px-3 py-2 text-gray-700">Our Expert Team</span>
