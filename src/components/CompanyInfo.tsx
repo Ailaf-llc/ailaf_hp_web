@@ -9,15 +9,11 @@ const CompanyInfo: React.FC = () => {
                 {/* アイラフについて */}
                 <section className="mb-16">
                     <h2 className="text-2xl font-bold mb-6">アイラフについて</h2>
-                    <p className="text-gray-700 mb-4">
-                        アイラフは、変わりゆく時代と働き方に対応し、お客様の"一歩先"を照らす存在を目指しています。
-                        私たちは、ビジネストランスフォーメーション（BX）とデジタルトランスフォーメーション（DX）を通じて、
-                        企業や組織の変革をサポートし、新しい価値の創造に貢献します。
-                    </p>
-                    <p className="text-gray-700">
-                        また、PTA活動のサポートや人材派遣など、多様な事業を展開することで、
-                        社会のさまざまなニーズに応え、より良い未来の創造に取り組んでいます。
-                    </p>
+                    <p className="text-gray-700 mb-4">私たちは、中小企業や個人事業主の皆さまが直面する「業務の複雑さ」や「デジタル化の遅れ」といった課題を解決し、よりシンプルで強い組織づくりをお手伝いします。
+たとえば、業務の流れを整理して効率化したり、デジタルツールやクラウドサービスを導入して負担を減らしたりすることから始めます。</p>
+                    <p className="text-gray-700">こうした取り組みは、ビジネスの進め方そのものを変革する「ビジネストランスフォーメーション（BX）」、そしてIT活用による「デジタルトランスフォーメーション（DX）」と呼ばれています。
+アイラフは、これらを難しい言葉ではなく、現場で役立つかたちで支援していきます。</p>
+                    <p className="text-gray-700">また、中高生を対象としたマインドセットコーチングを通じて、人生設計や学習習慣づくりをサポートし、未来を担う世代の成長にも貢献しています。</p>
                 </section>
 
                 {/* メンバー */}
@@ -28,6 +24,8 @@ const CompanyInfo: React.FC = () => {
                             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop" alt="宮野 聖史" className="w-32 h-32 rounded-full mx-auto mb-4" />
                             <h3 className="text-lg font-semibold">宮野 聖史</h3>
                             <p className="text-gray-600">代表社員</p>
+                            <p className="text-sm text-gray-500 mt-2">早稲田大学大学院経営管理研究科（WBS）修了。大手企業にてデジタルトランスフォーメーション（DX）推進や新規事業開発に従事し、戦略立案から現場実装まで幅広く携わる。
+もっと直接的に社会貢献したいという思いから、2025年にアイラフ合同会社を共同設立。</p>
                         </div>
                         <div className="text-center">
                             <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop" alt="山添 達郎" className="w-32 h-32 rounded-full mx-auto mb-4" />
@@ -38,7 +36,7 @@ const CompanyInfo: React.FC = () => {
                             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop" alt="田畑 佑樹" className="w-32 h-32 rounded-full mx-auto mb-4" />
                             <h3 className="text-lg font-semibold">田畑 佑樹</h3>
                             <p className="text-gray-600">業務執行社員</p>
-                            <p className="text-sm text-gray-500 mt-2">中外製薬でのDX推進経験を活かし、多数の外部公演や記事執筆の実績あり</p>
+                            <p className="text-sm text-gray-500 mt-2">インフラ企業および製薬企業でのDX推進を経験。この経験を活かし、多数の外部公演や記事執筆の実績あり</p>
                             <div className="mt-4 text-sm">
                                 <p className="mb-2">
                                     <a href="https://cloud.google.com/blog/ja/topics/customers/chugai-pharm-generating-ai-to-drive-operational-efficiency-and-value-creation/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
@@ -72,11 +70,11 @@ const CompanyInfo: React.FC = () => {
                                 </div>
                                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt className="text-sm font-medium text-gray-500">設立年月日</dt>
-                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">2025年4月1日</dd>
+                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">2025年7月1日</dd>
                                 </div>
                                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt className="text-sm font-medium text-gray-500">資本金</dt>
-                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">1,000,000円</dd>
+                                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">500,000円</dd>
                                 </div>
                                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt className="text-sm font-medium text-gray-500">事業年度</dt>
@@ -100,9 +98,7 @@ const CompanyInfo: React.FC = () => {
                                             <li>ビジネストランスフォーメーションコンサルティング</li>
                                             <li>デジタルトランスフォーメーションコンサルティング</li>
                                             <li>経営コンサルティング</li>
-                                            <li>PTA活動の代行及びマッチング</li>
-                                            <li>PTA活動サポートシステムの構築・運営</li>
-                                            <li>人材派遣</li>
+                                            <li>マインドセットコーチング</li>
                                         </ul>
                                     </dd>
                                 </div>
