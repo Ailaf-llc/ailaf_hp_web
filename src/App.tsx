@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X as CloseIcon, ChevronDown, Mail, LinkIcon, BarChart3, Bot, Briefcase, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users } from 'lucide-react';
 
 import logo from './assets/logo.png';
 import miyanoImage from './assets/miyano.jpg';
@@ -11,13 +11,17 @@ import tabataImage from './assets/tabata.jpg';
 interface NavLinkProps {
   to: string;
   children: React.ReactNode;
+  onClick?: () => void; // モバイルメニューを閉じるための関数
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ to, children }) => {
+const NavLink: React.FC<NavLinkProps> = ({ to, children, onClick }) => {
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     const element = document.querySelector(to);
     element?.scrollIntoView({ behavior: 'smooth' });
+    if (onClick) {
+      onClick(); // メニューを閉じる
+    }
   };
 
   return (
@@ -32,7 +36,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   
-  const contactEmail = 'contact@ailaf.com';
+  const companyName = "アイラフ合同会社 Ailaf LLC";
   const currentYear = new Date().getFullYear();
 
   // --- データ定義 ---
@@ -87,7 +91,8 @@ function App() {
       name: '山添 達郎',
       role: '業務執行社員',
       image: yamazoeImage,
-      bio: 'デジタル広告と動画ソリューションで豊富な経験を持ち、営業・事業開発からパートナーシップ構築まで幅広く担当。現在はSaaSセールスとチームマネジメントを牽引中。',
+      // ▼▼▼ 紹介文を更新 ▼▼▼
+      bio: '国内外の大手企業からスタートアップまで幅広く経験し、デジタル広告と動画ソリューション領域で営業・事業開発やパートナーシップ構築に従事。事業のGTM設計やスケールアップに強みを持つ。',
       links: []
     },
     {
@@ -113,6 +118,8 @@ function App() {
     { question: 'マインドセットコーチングは誰が対象ですか？', answer: '主に中高生を対象としていますが、保護者の方との同席相談や、大学生・若手社会人への応用も可能です。' },
     { question: 'コーチングの形式はどのようになりますか？', answer: 'オンラインでの1on1セッションを基本とし、必要に応じて保護者同席や少人数グループでの実施も行っています。ご自宅等での対面実施もう。' }
   ];
+  
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <div className="min-h-screen bg-white">
@@ -121,12 +128,13 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Link to="/">
-                <img src={logo} alt="アイラフ" className="h-8 w-auto mr-2" />
-                <span className="text-xl font-bold">アイラフ</span>
-              </Link>
+              <a href="#hero" onClick={(e) => { e.preventDefault(); document.querySelector('#hero')?.scrollIntoView({ behavior: 'smooth' }); }} className="flex items-center">
+                <img src={logo} alt="アイラフ合同会社 Ailaf LLC" className="h-8 w-auto mr-2" />
+                {/* ▼▼▼ 会社名を更新 ▼▼▼ */}
+                <span className="text-xl font-bold">Ailaf LLC</span>
+              </a>
             </div>
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-6">
               <NavLink to="#services">事業内容</NavLink>
               <NavLink to="#strengths">選ばれる理由</NavLink>
               <NavLink to="#team">Our Expert Team</NavLink>
@@ -145,33 +153,42 @@ function App() {
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <NavLink to="#services"><span className="block px-3 py-2 text-gray-700">事業内容</span></NavLink>
-            <NavLink to="#strengths"><span className="block px-3 py-2 text-gray-700">選ばれる理由</span></NavLink>
-            <NavLink to="#team"><span className="block px-3 py-2 text-gray-700">Our Expert Team</span></NavLink>
-            <NavLink to="#company-profile"><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
+            <NavLink to="#services" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事業内容</span></NavLink>
+            <NavLink to="#strengths" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">選ばれる理由</span></NavLink>
+            <NavLink to="#team" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">Our Expert Team</span></NavLink>
+            <NavLink to="#company-profile" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
           </div>
         </div>
       )}
 
       {/* Hero Section */}
       <section id="hero" className="bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-          <img src={logo} alt="アイラフ" className="h-24 w-auto mx-auto mb-6" />
-          <h1 className="text-4xl font-bold mb-4">
-            変わる時代、変わる働き方。<br />
-            あなたの"一歩先"を照らします。
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
-            複雑な業務、遅れるデジタル化。そんな課題を「現場で役立つDX」で解決し、
-            シンプルで強い組織づくりを、計画から実行まで伴走支援します。
-          </p>
-          <div className="flex justify-center items-center gap-x-6 gap-y-2 flex-wrap mb-12">
-            <span className="flex items-center text-gray-300"><CheckCircleIcon />業務プロセスの非効率</span>
-            <span className="flex items-center text-gray-300"><CheckCircleIcon />デジタル化の遅れ</span>
-            <span className="flex items-center text-gray-300"><CheckCircleIcon />ITツールの活用方法</span>
-          </div>
-          <div className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-lg opacity-75">
-            お問い合わせ (準備中)
+        {/* ▼▼▼ Heroセクションのレイアウトを変更 ▼▼▼ */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-center py-20 md:py-28">
+            {/* 左側: ロゴ (PC表示) */}
+            <div className="w-full md:w-1/3 flex justify-center md:justify-end mb-8 md:mb-0 md:mr-12">
+              <img src={logo} alt={companyName} className="h-40 w-auto" />
+            </div>
+            {/* 右側: テキストコンテンツ */}
+            <div className="w-full md:w-2/3 text-center md:text-left">
+              <h1 className="text-3xl lg:text-4xl font-bold mb-4">
+                変わる時代、変わる働き方。<br />
+                あなたの"一歩先"を照らします。
+              </h1>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto md:mx-0 mb-8">
+                複雑な業務、遅れるデジタル化。そんな課題を「現場で役立つDX」で解決し、
+                シンプルで強い組織づくりを、計画から実行まで伴走支援します。
+              </p>
+              <div className="flex justify-center md:justify-start items-center gap-x-6 gap-y-2 flex-wrap mb-10">
+                <span className="flex items-center text-gray-300"><CheckCircleIcon />業務プロセスの非効率</span>
+                <span className="flex items-center text-gray-300"><CheckCircleIcon />デジタル化の遅れ</span>
+                <span className="flex items-center text-gray-300"><CheckCircleIcon />ITツールの活用方法</span>
+              </div>
+              <div className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-lg opacity-75 inline-block">
+                お問い合わせ (準備中)
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -248,7 +265,8 @@ function App() {
           <h2 className="text-3xl font-bold text-center text-white mb-12">会社概要</h2>
           <div className="bg-gray-900 shadow-lg overflow-hidden rounded-lg">
             <dl>
-              <CompanyInfoRow label="商号" value="アイラフ合同会社" />
+              {/* ▼▼▼ 会社名を更新 ▼▼▼ */}
+              <CompanyInfoRow label="商号" value={companyName} />
               <CompanyInfoRow label="設立年月日" value="2025年7月7日(令和7年7月7日)" isEven />
               <CompanyInfoRow label="資本金" value="500,000円" />
               <CompanyInfoRow label="事業年度" value="7月1日から翌年6月30日まで" isEven />
@@ -305,10 +323,11 @@ function App() {
       <footer className="bg-gray-900 text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <img src={logo} alt="アイラフ" className="h-12 w-auto mb-4 mx-auto" />
-            <h3 className="text-white text-lg font-semibold">アイラフ合同会社</h3>
+            <img src={logo} alt={companyName} className="h-12 w-auto mb-4 mx-auto" />
+             {/* ▼▼▼ 会社名を更新 ▼▼▼ */}
+            <h3 className="text-white text-lg font-semibold">{companyName}</h3>
           </div>
-          <div className="flex justify-center space-x-6 text-sm mb-8">
+          <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
             <NavLink to="#services">事業内容</NavLink>
             <NavLink to="#strengths">選ばれる理由</NavLink>
             <NavLink to="#team">Team</NavLink>
@@ -316,7 +335,8 @@ function App() {
             <NavLink to="#faq">FAQ</NavLink>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center">
-            <p>&copy; {currentYear} アイラフ合同会社. All rights reserved.</p>
+             {/* ▼▼▼ コピーライトを更新 ▼▼▼ */}
+            <p>&copy; {currentYear} {companyName}. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -334,7 +354,7 @@ const CheckCircleIcon = () => (
 );
 
 const CompanyInfoRow: React.FC<{ label: string; value: string; isEven?: boolean }> = ({ label, value, isEven }) => (
-  <div className={`px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${isEven ? 'bg-gray-800' : ''}`}>
+  <div className={`px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${isEven ? 'bg-gray-800' : 'bg-gray-900'}`}>
     <dt className="text-sm font-medium text-gray-400">{label}</dt>
     <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">{value}</dd>
   </div>
