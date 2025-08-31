@@ -1,1 +1,5 @@
-a9d157a0-fe03-48de-8465-073cb6b2c40a
+{
+  "Description": "Web サイトのルートにある Microsoft 365 のドメイン所有権確認ファイル",
+  "Domain": "ailaf.co.jp",
+  "Id": "a9d157a0-fe03-48de-8465-073cb6b2c40a"
+}
