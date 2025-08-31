@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, Award } from 'lucide-react';
+import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users } from 'lucide-react';
 
 import logo from './assets/logo.png';
 import miyanoImage from './assets/miyano.jpg';
 import yamazoeImage from './assets/yamazoe.jpg';
 import tabataImage from './assets/tabata.jpg';
 
-// ▼▼▼ スクロールで要素をフェードインさせるためのカスタムコンポーネント ▼▼▼
+// スクロールで要素をフェードインさせるためのカスタムコンポーネント
 const FadeInSection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isVisible, setVisible] = useState(false);
   const domRef = useRef<HTMLDivElement>(null);
@@ -16,7 +16,6 @@ const FadeInSection: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setVisible(true);
-          // 一度表示されたら監視を停止
           observer.unobserve(entry.target);
         }
       });
@@ -40,7 +39,6 @@ const FadeInSection: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     </div>
   );
 };
-
 
 // ナビゲーション用のリンクコンポーネント
 interface NavLinkProps {
@@ -97,13 +95,21 @@ function App() {
     }
   ];
 
-  const faqs = [ /* ... FAQデータは変更なし ... */ ];
+  const faqs = [
+    { question: 'サービスの対象地域はどこですか？', answer: '東京都内および近郊を中心にサービスを提供しています。完全オンラインでのご対応も可能ですので、日本全国からご利用いただけます。' },
+    { question: 'コンサルティングの期間はどのくらいですか？', answer: '完全に案件依存で、プロジェクトの規模や目的によって異なります。弊社の特性上、数週間から数か月単位の比較的短期プロジェクトが多い想定です。' },
+    { question: '対応可能な業種はありますか？', answer: '特定の業種に限らず、幅広い分野の中小規模事業者様をご支援可能です。特に「業務プロセス改善」や「デジタル化」に課題を感じているお客様に適しています。まずは豪相談頂ければ幸いです。' },
+    { question: '相談の段階でもお願いできますか？', answer: 'はい。明確な課題が固まっていない段階でもご相談いただけます。「何から手をつけて良いかわからない」という状況こそ、私たちが得意とする領域です。' },
+    { question: '費用感を知りたいのですが？', answer: 'ご依頼内容や期間によって変動します。初回相談は無料で承っておりますので、お気軽にお問い合わせください。' },
+    { question: 'オンラインでの打ち合わせは可能ですか？', answer: 'はい。オンラインミーティングツールを活用して、全国どこからでも打ち合わせ可能です。対面打ち合わせをご希望の場合はご相談ください。' },
+    { question: 'マインドセットコーチングは誰が対象ですか？', answer: '主に中高生を対象としていますが、保護者の方との同席相談や、大学生・若手社会人への応用も可能です。' },
+    { question: 'コーチングの形式はどのようになりますか？', answer: 'オンラインでの1on1セッションを基本とし、必要に応じて保護者同席や少人数グループでの実施も行っています。ご自宅等での対面実施もう。' }
+  ];
   
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <div className="min-h-screen bg-white font-sans">
-      {/* Navigation */}
       <nav className="bg-white/80 border-b border-gray-200 sticky top-0 z-50 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
@@ -129,7 +135,6 @@ function App() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b">
           <div className="px-2 pt-2 pb-3 space-y-1">
@@ -143,7 +148,6 @@ function App() {
       )}
 
       <main>
-        {/* Hero Section */}
         <section id="hero" className="bg-slate-900 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
@@ -176,7 +180,6 @@ function App() {
           </div>
         </section>
 
-        {/* Services Section */}
         <section id="services" className="py-20 lg:py-28">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -194,7 +197,6 @@ function App() {
           </div>
         </section>
 
-        {/* Strengths Section */}
         <section id="strengths" className="py-20 lg:py-28 bg-slate-900 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -214,7 +216,6 @@ function App() {
           </div>
         </section>
 
-        {/* ▼▼▼ Case Studies Section (新規追加) ▼▼▼ */}
         <section id="cases" className="py-20 lg:py-28">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -223,7 +224,6 @@ function App() {
                 <p className="mt-4 text-lg text-gray-600">お客様の成功事例を現在準備中です。公開まで今しばらくお待ちください。</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Ghost Cards */}
                 {[...Array(3)].map((_, i) => (
                   <div key={i} className="bg-slate-50 rounded-xl p-6 blur-sm animate-pulse">
                     <div className="h-8 bg-slate-200 rounded w-3/4 mb-4"></div>
@@ -236,37 +236,139 @@ function App() {
           </div>
         </section>
 
-        {/* Team Section */}
         <section id="team" className="py-20 lg:py-28 bg-slate-50">
-           {/* ... Team Sectionの中身は変更なし ... */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeInSection>
+              <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">Our Expert Team</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {team.map((member) => (
+                  <div key={member.name} className="bg-white p-8 rounded-xl shadow-xl flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                    <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-slate-200" />
+                    <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
+                    <p className="text-sky-600 font-semibold mb-4">{member.role}</p>
+                    <p className="text-gray-600 text-left text-sm mb-4 flex-grow">{member.bio}</p>
+                    {member.links.length > 0 && (
+                      <div className="mt-auto pt-4 border-t border-slate-200">
+                        <h4 className="font-semibold text-left mb-2 text-sm text-gray-500">関連リンク</h4>
+                        <ul className="space-y-2">
+                          {member.links.map((link, linkIndex) => (
+                            <li key={linkIndex}>
+                              <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline text-sm flex items-start text-left">
+                                <LinkIcon className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
+                                <span>{link.title}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </FadeInSection>
+          </div>
         </section>
 
-        {/* Company Profile Section */}
         <section id="company-profile" className="py-20 lg:py-28 bg-slate-800 text-slate-300">
-           {/* ... Company Profile Sectionの中身は変更なし ... */}
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeInSection>
+              <h2 className="text-3xl lg:text-4xl font-bold text-center text-white mb-16">会社概要</h2>
+              <div className="bg-slate-900 shadow-lg overflow-hidden rounded-xl">
+                <dl>
+                  <CompanyInfoRow label="商号" value={companyName} />
+                  <CompanyInfoRow label="設立年月日" value="2025年7月7日(令和7年7月7日)" isEven />
+                  <CompanyInfoRow label="資本金" value="500,000円" />
+                  <CompanyInfoRow label="事業年度" value="7月1日から翌年6月30日まで" isEven />
+                  <CompanyInfoRow label="代表者" value="代表社員 宮野 聖史" />
+                  <div className="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4 bg-slate-800">
+                    <dt className="text-sm font-medium text-slate-400">所在地</dt>
+                    <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
+                      東京都内
+                      <p className="text-xs text-slate-500 mt-1">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </FadeInSection>
+          </div>
         </section>
 
-        {/* FAQ Section */}
         <section id="faq" className="py-20 lg:py-28">
-           {/* ... FAQ Sectionの中身は変更なし ... */}
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeInSection>
+              <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">よくある質問</h2>
+              <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <div key={faq.question} className="border border-slate-200 rounded-lg">
+                    <button
+                      className="w-full px-6 py-4 text-left flex justify-between items-center text-gray-800"
+                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    >
+                      <span className="font-medium">{faq.question}</span>
+                      <ChevronDown className={`transform transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
+                    </button>
+                    {openFaq === index && (
+                      <div className="px-6 pb-4 text-gray-600">
+                        <p>{faq.answer}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </FadeInSection>
+          </div>
         </section>
 
-        {/* Contact Section */}
         <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
-           {/* ... Contact Sectionの中身は変更なし ... */}
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <FadeInSection>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4">お問い合わせ</h2>
+              <p className="text-lg text-slate-300">
+                現在、お問い合わせフォームの準備を進めております。<br />
+                ご不便をおかけしますが、開設まで今しばらくお待ちください。
+              </p>
+            </FadeInSection>
+          </div>
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-12">
-         {/* ... Footerの中身は変更なし ... */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <img src={logo} alt={companyName} className="h-12 w-auto mb-4 mx-auto" />
+            <h3 className="text-white text-lg font-semibold">{companyName}</h3>
+          </div>
+          <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
+            <NavLink to="#services">事業内容</NavLink>
+            <NavLink to="#strengths">選ばれる理由</NavLink>
+            <NavLink to="#cases">導入実績</NavLink>
+            <NavLink to="#team">Team</NavLink>
+            <NavLink to="#company-profile">会社概要</NavLink>
+            <NavLink to="#faq">FAQ</NavLink>
+          </div>
+          <div className="mt-8 pt-8 border-t border-slate-700 text-center">
+            <p className="text-sm">&copy; {currentYear} {companyName}. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
 }
 
 // --- ヘルパーコンポーネント ---
-const CheckCircleIcon = () => ( /* ... 変更なし ... */ );
-const CompanyInfoRow: React.FC<{ label: string; value: string; isEven?: boolean }> = ({ label, value, isEven }) => ( /* ... 変更なし ... */ );
+
+const CheckCircleIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-sky-400">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+  </svg>
+);
+
+const CompanyInfoRow: React.FC<{ label: string; value: string; isEven?: boolean }> = ({ label, value, isEven }) => (
+  <div className={`px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4 ${isEven ? 'bg-slate-800' : 'bg-slate-900'}`}>
+    <dt className="text-sm font-medium text-slate-400">{label}</dt>
+    <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">{value}</dd>
+  </div>
+);
 
 export default App;
