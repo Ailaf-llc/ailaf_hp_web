@@ -99,7 +99,7 @@ function App() {
       name: '田畑 佑樹',
       role: '業務執行社員',
       image: tabataImage,
-      bio: 'インフラ企業および製薬企業でのDX推進を経験。この経験を活かし、多数の外部公演や記事執筆の実績を持つ専門家。',
+      bio: 'アプリケーションからインフラまで精通する、プロダクト志向のDXアーキテクト。インフラ企業、製薬会社にてDX推進を牽引し、特に生成AIアプリ開発プロジェクトでは、アーキテクチャ設計からUI/UXデザインまで担当し全社展開を成功させた実績を持つ。技術選定からプロダクトデザインまで、一気通貫でのご支援が可能。',
       links: [
         { title: 'Google Cloud: 生成AIのビジネス適用', url: 'https://cloud.google.com/blog/ja/topics/customers/chugai-pharm-generating-ai-to-drive-operational-efficiency-and-value-creation/' },
         { title: 'AWS: 生成AIアプリの全社導入', url: 'https://aws.amazon.com/jp/solutions/case-studies/chugai-pharm/' },
