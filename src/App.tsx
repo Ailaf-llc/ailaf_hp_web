@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users } from 'lucide-react';
+import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap } from 'lucide-react';
 
 import logo from './assets/logo.png';
 import miyanoImage from './assets/miyano.jpg';
@@ -72,16 +72,24 @@ function App() {
 
   // --- データ定義 ---
   const services = [
-    { title: 'ビジネストランスフォーメーション', description: '業務プロセスの見直しから組織文化の変革まで、事業全体の成長を支援します。', icon: <Briefcase className="w-10 h-10 text-sky-600" /> },
-    { title: 'デジタルトランスフォーメーション', description: 'AIやクラウド技術を駆使し、非効率な業務を自動化、データに基づいた経営を実現します。', icon: <Bot className="w-10 h-10 text-sky-600" /> },
-    { title: '経営コンサルティング', description: '新規事業の立案や資金調達など、企業の持続的な成長に向けた戦略を共に描きます。', icon: <BarChart3 className="w-10 h-10 text-sky-600" /> },
-    { title: 'マインドセットコーチング', description: '将来を担う若い世代に向けた人生設計支援サービスを提供します。', icon: <Users className="w-10 h-10 text-sky-600" /> }
+    {
+      target: '中小企業の皆様へ',
+      title: 'DX・業務改善支援',
+      description: '「何から始めれば？」という段階から伴走します。業務プロセスの可視化、最適なITツール選定、データ活用基盤の構築まで、明日から実感できる変化を創出します。',
+      icon: <Building className="w-10 h-10 text-sky-600" />
+    },
+    {
+      target: '学生・若手社会人の皆様へ',
+      title: 'キャリア・ライフデザイン支援',
+      description: 'VUCA時代を生き抜くための「自分だけの軸」作りをお手伝い。大手企業で活躍する現役ビジネスパーソンが、実践的なキャリア設計と学習戦略をコーチングします。',
+      icon: <BrainCircuit className="w-10 h-10 text-sky-600" />
+    }
   ];
 
   const strengths = [
-    { title: '現場に寄り添う伴走支援', description: '計画倒れにさせません。お客様のチームの一員として、プロジェクトの実行から定着まで責任を持ってサポートします。' },
-    { title: '最新技術への深い知見', description: '生成AIやクラウドネイティブ技術など、常に最新の動向を捉え、お客様のビジネスに最適なソリューションを提案します。' },
-    { title: '人 と 組織 を育むアプローチ', description: 'ツールの導入だけでなく、社員一人ひとりのスキルアップと、変化に強い組織文化の醸成を重視します。' }
+    { title: '高品質を、適正価格で', description: '各メンバーが大手企業の本業で培った専門知識を直接提供。余分なコストを徹底的に削減し、大手コンサルティングファーム品質のサービスを、スモールスタート可能な価格でご提供します。', icon: <Zap className="w-8 h-8 mx-auto mb-4 text-sky-400" /> },
+    { title: '少数精鋭ならではの柔軟性', description: '私たちは意思決定が迅速な少数精鋭チームです。お客様の状況やご要望に合わせ、定型化されたサービスではなく、本当に必要な支援を柔軟かつスピーディに設計・実行します。', icon: <Users className="w-8 h-8 mx-auto mb-4 text-sky-400" /> },
+    { title: '常にアップデートされる最新知見', description: 'メンバーは全員、DXや事業開発の最前線で活躍する現役プレイヤー。日々アップデートされる現場のリアルな情報と最新技術トレンドを、お客様の課題解決に活かします。', icon: <BarChart3 className="w-8 h-8 mx-auto mb-4 text-sky-400" /> }
   ];
 
   const team = [
@@ -98,13 +106,11 @@ function App() {
 
   const faqs = [
     { question: 'サービスの対象地域はどこですか？', answer: '東京都内および近郊を中心にサービスを提供しています。完全オンラインでのご対応も可能ですので、日本全国からご利用いただけます。' },
-    { question: 'コンサルティングの期間はどのくらいですか？', answer: '完全に案件依存で、プロジェクトの規模や目的によって異なります。弊社の特性上、数週間から数か月単位の比較的短期プロジェクトが多い想定です。' },
-    { question: '対応可能な業種はありますか？', answer: '特定の業種に限らず、幅広い分野の中小規模事業者様をご支援可能です（一部お受けできない業種・領域がございます）。特に「業務プロセス改善」や「デジタル化」に課題を感じているお客様に適しています。まずはご相談頂ければ幸いです。' },
-    { question: '相談の段階でもお願いできますか？', answer: 'はい。明確な課題が固まっていない段階でもご相談いただけます。「何から手をつけて良いかわからない」という状況こそ、私たちが得意とする領域です。' },
-    { question: '費用感を知りたいのですが？', answer: 'ご依頼内容や期間によって変動します。初回相談は無料で承っておりますので、お気軽にお問い合わせください。' },
+    { question: 'プロジェクト期間はどれくらいですか？', answer: 'プロジェクトの規模や目的によって異なりますが、弊社の特性上、数週間から数ヶ月単位の比較的短期プロジェクトを多く手掛けております。お客様の状況に合わせた柔軟なご提案が可能です。' },
+    { question: '対応可能な業種はありますか？', answer: '特定の業種に限らず、幅広い分野の中小規模事業者様をご支援可能です（一部お受けできない業種・領域がございます）。特に「業務プロセス改善」や「デジタル化」に課題を感じているお客様に適しています。まずはお気軽にご相談ください。' },
+    { question: '相談の段階でもお願いできますか？', answer: 'はい。「何から手をつけて良いかわからない」という状況こそ、私たちが得意とする領域です。明確な課題が固まっていない段階でも、ぜひご相談ください。' },
+    { question: '費用感を知りたいのですが？', answer: 'ご依頼内容や期間によって変動いたします。お客様のご予算に応じて柔軟なご提案が可能ですので、まずはお気軽にお問い合わせいただき、無料相談をご活用ください。' },
     { question: 'オンラインでの打ち合わせは可能ですか？', answer: 'はい。オンラインミーティングツールを活用して、全国どこからでも打ち合わせ可能です。対面打ち合わせをご希望の場合はご相談ください。' },
-    { question: 'マインドセットコーチングは誰が対象ですか？', answer: '主に中高生を対象としていますが、保護者の方との同席相談や、大学生・若手社会人への応用も可能です。' },
-    { question: 'コーチングの形式はどのようになりますか？', answer: 'オンラインでの1on1セッションを基本とし、必要に応じて保護者同席や少人数グループでの実施も行っています。ご自宅等での対面実施もう。' }
   ];
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -123,7 +129,7 @@ function App() {
             <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
               <NavLink to="#services">事業内容</NavLink>
               <NavLink to="#strengths">選ばれる理由</NavLink>
-              <NavLink to="#cases">導入実績</NavLink>
+              <NavLink to="#cases">事例紹介</NavLink>
               <NavLink to="#team">Team</NavLink>
               <NavLink to="#company-profile">会社概要</NavLink>
             </div>
@@ -136,12 +142,13 @@ function App() {
         </div>
       </nav>
 
+      {/* ▼▼▼ Mobile menu ▼▼▼ */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-b">
+        <div className="fixed top-16 md:hidden w-full bg-white border-b shadow-lg z-40">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <NavLink to="#services" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事業内容</span></NavLink>
             <NavLink to="#strengths" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">選ばれる理由</span></NavLink>
-            <NavLink to="#cases" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">導入実績</span></NavLink>
+            <NavLink to="#cases" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事例紹介</span></NavLink>
             <NavLink to="#team" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">Team</span></NavLink>
             <NavLink to="#company-profile" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
           </div>
@@ -149,31 +156,22 @@ function App() {
       )}
 
       <main>
+        {/* Hero Section */}
         <section id="hero" className="bg-slate-900 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
+            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
               <FadeInSection>
-                <div className="flex flex-col md:flex-row items-center justify-center">
-                  <div className="w-full md:w-1/3 flex justify-center md:justify-end mb-8 md:mb-0 md:mr-12">
-                    <img src={logo} alt={companyName} className="h-40 w-auto" />
-                  </div>
-                  <div className="w-full md:w-2/3 text-center md:text-left">
-                    <h1 className="text-3xl lg:text-5xl font-bold mb-4 leading-tight">
-                      変わる時代、変わる働き方。<br />
-                      あなたの"一歩先"を照らします。
-                    </h1>
-                    <p className="text-lg text-slate-300 max-w-2xl mx-auto md:mx-0 mb-8">
-                      複雑な業務、遅れるデジタル化。そんな課題を「現場で役立つDX」で解決し、
-                      シンプルで強い組織づくりを、計画から実行まで伴走支援します。
-                    </p>
-                    <div className="flex justify-center md:justify-start items-center gap-x-6 gap-y-2 flex-wrap mb-10 text-sm">
-                      <span className="flex items-center text-slate-300"><CheckCircleIcon />業務プロセスの非効率</span>
-                      <span className="flex items-center text-slate-300"><CheckCircleIcon />デジタル化の遅れ</span>
-                      <span className="flex items-center text-slate-300"><CheckCircleIcon />ITツールの活用方法</span>
-                    </div>
-                    <div className="bg-slate-600 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-base opacity-80 inline-block">
-                      お問い合わせ (準備中)
-                    </div>
+                <div className="text-center">
+                  <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                    DXを、もっと身近に。<br />
+                    明日から変わる業務改善を、あなたのペースで。
+                  </h1>
+                  <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-12">
+                    アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
+                    専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
+                  </p>
+                  <div className="bg-slate-600 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-base opacity-80 inline-block">
+                    初回無料相談はこちら (準備中)
                   </div>
                 </div>
               </FadeInSection>
@@ -181,6 +179,7 @@ function App() {
           </div>
         </section>
 
+        {/* Services Section */}
         <section id="services" className="py-20 lg:py-28">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -188,7 +187,10 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {services.map((service) => (
                   <div key={service.title} className="bg-slate-50 p-8 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                    <div className="mb-4">{service.icon}</div>
+                    <div className="flex items-center mb-4">
+                      {service.icon}
+                      <p className="ml-4 font-semibold text-gray-500">{service.target}</p>
+                    </div>
                     <h3 className="text-xl font-semibold mb-2 text-gray-900">{service.title}</h3>
                     <p className="text-gray-600">{service.description}</p>
                   </div>
@@ -198,18 +200,20 @@ function App() {
           </div>
         </section>
 
+        {/* Strengths Section */}
         <section id="strengths" className="py-20 lg:py-28 bg-slate-900 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold">アイラフが選ばれる理由</h2>
-                <p className="mt-4 text-lg text-slate-300">私たちは、お客様の成功を第一に考えた3つの強みを持っています。</p>
+                <p className="mt-4 text-lg text-slate-300">本業を持つプロ集団だからこそ提供できる、3つの価値があります。</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {strengths.map((strength, index) => (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                {strengths.map((strength) => (
                   <div key={strength.title} className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-                    <h3 className="text-xl font-semibold text-sky-400 mb-3">{`0${index + 1}. ${strength.title}`}</h3>
-                    <p className="text-slate-300">{strength.description}</p>
+                    {strength.icon}
+                    <h3 className="text-xl font-semibold text-sky-400 mb-3">{strength.title}</h3>
+                    <p className="text-slate-300 text-left">{strength.description}</p>
                   </div>
                 ))}
               </div>
@@ -217,6 +221,7 @@ function App() {
           </div>
         </section>
 
+        {/* Cases Section */}
         <section id="cases" className="py-20 lg:py-28">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -237,6 +242,7 @@ function App() {
           </div>
         </section>
 
+        {/* Team Section */}
         <section id="team" className="py-20 lg:py-28 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -270,6 +276,7 @@ function App() {
           </div>
         </section>
 
+        {/* Company Profile Section */}
         <section id="company-profile" className="py-20 lg:py-28 bg-slate-800 text-slate-300">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -294,6 +301,7 @@ function App() {
           </div>
         </section>
 
+        {/* FAQ Section */}
         <section id="faq" className="py-20 lg:py-28">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -320,6 +328,7 @@ function App() {
           </div>
         </section>
 
+        {/* Contact Section */}
         <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <FadeInSection>
@@ -342,7 +351,7 @@ function App() {
           <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
             <NavLink to="#services">事業内容</NavLink>
             <NavLink to="#strengths">選ばれる理由</NavLink>
-            <NavLink to="#cases">導入実績</NavLink>
+            <NavLink to="#cases">事例紹介</NavLink>
             <NavLink to="#team">Team</NavLink>
             <NavLink to="#company-profile">会社概要</NavLink>
             <NavLink to="#faq">FAQ</NavLink>
@@ -357,7 +366,6 @@ function App() {
 }
 
 // --- ヘルパーコンポーネント ---
-
 const CheckCircleIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-sky-400">
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
