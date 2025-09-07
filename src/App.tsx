@@ -70,6 +70,9 @@ function App() {
   const companyName = "アイラフ合同会社 Ailaf LLC";
   const currentYear = new Date().getFullYear();
 
+  // ▼▼▼ Heroセクションの背景画像URL ▼▼▼
+  const heroImageUrl = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg";
+
   // --- データ定義 ---
   const services = [
     {
@@ -155,22 +158,33 @@ function App() {
       )}
 
       <main>
-        <section id="hero" className="bg-slate-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ▼▼▼ Hero Section: 背景画像を追加 ▼▼▼ */}
+        <section id="hero" className="relative text-white">
+          {/* 背景画像とオーバーレイ */}
+          <div className="absolute inset-0">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${heroImageUrl})` }}
+            ></div>
+            <div className="absolute inset-0 bg-slate-900/70"></div>
+          </div>
+
+          {/* コンテンツ */}
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
               <FadeInSection>
                 <div className="text-center">
-                  <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                  <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
                     DXを、もっと身近に。<br />
                     明日から変わる業務改善を、あなたのペースで。
                   </h1>
-                  {/* ▼▼▼ この行のクラス名を変更 ▼▼▼ */}
-                  <p className="text-lg text-slate-300 max-w-3xl mx-auto mb-12">
+                  <p className="text-lg text-slate-200 max-w-3xl mx-auto mb-12">
                     アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
                     専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
                   </p>
-                  <div className="bg-slate-600 text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-base opacity-80 inline-block">
-                    初回無料相談はこちら (準備中)
+                  {/* ▼▼▼ ボタンの文言を修正 ▼▼▼ */}
+                  <div className="bg-sky-600 hover:bg-sky-700 transition-colors text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-base opacity-90 inline-block">
+                    お問い合わせはこちら (準備中)
                   </div>
                 </div>
               </FadeInSection>
