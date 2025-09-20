@@ -103,6 +103,7 @@ function App() {
         { title: 'Google Cloud: 生成AIのビジネス適用', url: 'https://cloud.google.com/blog/ja/topics/customers/chugai-pharm-generating-ai-to-drive-operational-efficiency-and-value-creation/' },
         { title: 'AWS: 生成AIアプリの全社導入', url: 'https://aws.amazon.com/jp/solutions/case-studies/chugai-pharm/' },
         { title: 'note: 生成AIアプリ開発を内製アジャイルで', url: 'https://note.chugai-pharm.co.jp/n/n2e7083b32b68?magazine_key=m5745f166b9de' }
+        { title: '日経XTECH: 内製アジャイルでDXを急加速', url: 'https://special.nikkeibp.co.jp/atclh/NXT/25/pwc0603/' }
       ]
     }
   ];
