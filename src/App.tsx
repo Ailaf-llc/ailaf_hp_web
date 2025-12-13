@@ -368,11 +368,11 @@ function App() {
               
               {/* ▼▼▼ 追加: メールリンクをボタンとして大きく表示 ▼▼▼ */}
               <a 
-                href="mailto:info@ailaf.co.jp"
+                href="mailto:contact@ailaf.co.jp"
                 className="group inline-flex items-center justify-center bg-white text-slate-900 hover:bg-sky-50 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
                 <Mail className="w-6 h-6 mr-3 text-sky-600 group-hover:scale-110 transition-transform" />
-                info@ailaf.co.jp へメールを送る
+                contact@ailaf.co.jp へメールを送る
               </a>
               <p className="mt-4 text-sm text-slate-400">
                 ※メーラーが起動します
@@ -389,11 +389,11 @@ function App() {
               <h3 className="text-white text-lg font-semibold mb-2">{companyName}</h3>
               {/* ▼▼▼ 追加: お問い合わせメールアドレス ▼▼▼ */}
               <a 
-                href="mailto:info@ailaf.co.jp" 
+                href="mailto:contact@ailaf.co.jp" 
                 className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300"
               >
                 <Mail className="w-4 h-4 mr-2" />
-                info@ailaf.co.jp
+                contact@ailaf.co.jp
               </a>
             </div>
             <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
