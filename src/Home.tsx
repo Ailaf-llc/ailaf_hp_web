@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// ArrowRight を追加
+// ▼▼▼ HelmetProviderはmain.tsxにあるので、ここにはHelmetのみインポート ▼▼▼
+import { Helmet } from 'react-helmet-async';
+import CookieConsent from 'react-cookie-consent';
 import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, ArrowRight } from 'lucide-react';
 
 import logo from './assets/logo.png';
@@ -97,7 +99,7 @@ function Home() {
     { title: '常にアップデートされる最新知見', description: 'メンバーは全員、DXや事業開発の最前線で活躍する現役プレイヤー。日々アップデートされる現場のリアルな情報と最新技術トレンドを、お客様の課題解決に活かします。', icon: <BarChart3 className="w-8 h-8 mx-auto mb-4 text-sky-400" /> }
   ];
 
-// ▼▼▼ 事例データの定義（ONDO様反映版 + Coming Soon対応） ▼▼▼
+  // ▼▼▼ 事例データの定義（ONDO様反映版 + Coming Soon対応） ▼▼▼
   const cases = [
     {
       id: 1,
@@ -153,7 +155,19 @@ function Home() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
+    // HelmetProviderは削除しました (main.tsxにあるため)
     <div className="min-h-screen bg-white font-sans">
+      
+      {/* ▼▼▼ 追加: SEO用メタタグ設定 ▼▼▼ */}
+      <Helmet>
+        <title>Ailaf LLC | DXを、もっと身近に。あなたのペースで。</title>
+        <meta name="description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。" />
+        <meta property="og:title" content="Ailaf LLC | DXを、もっと身近に。あなたのペースで。" />
+        <meta property="og:description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。中小企業の業務改善・DX推進を伴走支援します。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={heroImageUrl} />
+      </Helmet>
+
       <nav className="bg-white/80 border-b border-gray-200 sticky top-0 z-50 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
@@ -216,10 +230,17 @@ function Home() {
                     アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
                     専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
                   </p>
-                  {/* ▼▼▼ ボタンの文言を修正 ▼▼▼ */}
-                  <div className="bg-sky-600 hover:bg-sky-700 transition-colors text-white px-8 py-3 rounded-lg font-semibold cursor-not-allowed text-base opacity-90 inline-block">
-                    お問い合わせはこちら (準備中)
-                  </div>
+                  {/* ▼▼▼ 修正: ボタンを有効化し、クリックで#contactへ飛ぶように変更 ▼▼▼ */}
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-sky-500/30 hover:-translate-y-1 inline-block"
+                  >
+                    無料相談・お問い合わせ
+                  </a>
                 </div>
               </FadeInSection>
             </div>
@@ -416,24 +437,45 @@ function Home() {
           </div>
         </section>
 
+          {/* Contact Section */}
         <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <FadeInSection>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">お問い合わせ</h2>
-              <p className="text-lg text-slate-300">
-                現在、お問い合わせフォームの準備を進めております。<br />
-                ご不便をおかけしますが、開設まで今しばらくお待ちください。
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6">お問い合わせ</h2>
+              <p className="text-lg text-slate-300 mb-10 leading-relaxed">
+                お問い合わせフォームは現在準備中ですが、メールでのご相談は随時受け付けております。<br />
+                業務改善のご相談、費用感の確認など、まずはお気軽にご連絡ください。
+              </p>
+              
+              {/* ▼▼▼ 追加: メールリンクをボタンとして大きく表示 ▼▼▼ */}
+              <a 
+                href="mailto:contact@ailaf.co.jp"
+                className="group inline-flex items-center justify-center bg-white text-slate-900 hover:bg-sky-50 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+              >
+                <Mail className="w-6 h-6 mr-3 text-sky-600 group-hover:scale-110 transition-transform" />
+                contact@ailaf.co.jp へメールを送る
+              </a>
+              <p className="mt-4 text-sm text-slate-400">
+                ※メーラーが起動します
               </p>
             </FadeInSection>
           </div>
         </section>
-      </main>
+        </main>
 
       <footer className="bg-slate-900 text-slate-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <img src={logo} alt={companyName} className="h-12 w-auto mb-4 mx-auto" />
-            <h3 className="text-white text-lg font-semibold">{companyName}</h3>
+            <h3 className="text-white text-lg font-semibold mb-2">{companyName}</h3>
+            {/* ▼▼▼ 追加: フッターにもメールアドレスを表示 ▼▼▼ */}
+            <a 
+              href="mailto:contact@ailaf.co.jp" 
+              className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300"
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              contact@ailaf.co.jp
+            </a>
           </div>
           <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
             <NavLink to="#services">事業内容</NavLink>
@@ -448,6 +490,28 @@ function Home() {
           </div>
         </div>
       </footer>
+      
+      {/* ▼▼▼ 追加: クッキー同意バナー ▼▼▼ */}
+      <CookieConsent
+        location="bottom"
+        buttonText="同意する"
+        cookieName="ailaf-cookie-consent"
+        style={{ background: "#1e293b", alignItems: "center" }} // slate-800
+        buttonStyle={{ 
+          background: "#0284c7", // sky-600
+          color: "#ffffff", 
+          fontSize: "13px", 
+          borderRadius: "6px",
+          padding: "8px 20px",
+          fontWeight: "bold"
+        }}
+        expires={150}
+      >
+        <span className="text-sm">
+          当サイトでは、サービスの向上とお客様へのより良い体験の提供のためにクッキー（Cookie）を使用しています。
+        </span>
+      </CookieConsent>
+
     </div>
   );
 }
