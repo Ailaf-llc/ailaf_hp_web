@@ -99,7 +99,7 @@ function Home() {
     { title: '常にアップデートされる最新知見', description: 'メンバーは全員、DXや事業開発の最前線で活躍する現役プレイヤー。日々アップデートされる現場のリアルな情報と最新技術トレンドを、お客様の課題解決に活かします。', icon: <BarChart3 className="w-8 h-8 mx-auto mb-4 text-sky-400" /> }
   ];
 
-  // ▼▼▼ 事例データの定義（ONDO様反映版 + Coming Soon対応） ▼▼▼
+  // ▼▼▼ 事例データの定義（4枚にして横スクロール用） ▼▼▼
   const cases = [
     {
       id: 1,
@@ -125,6 +125,16 @@ function Home() {
       category: '準備中',
       title: '次なる成功事例を準備中です',
       image: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      description: '現在、新たなプロジェクトが進行中です。公開まで今しばらくお待ちください。',
+      comingSoon: true
+    },
+    {
+      // ▼ 追加した4枚目
+      id: 4,
+      client: 'Coming Soon',
+      category: '準備中',
+      title: '次なる成功事例を準備中です',
+      image: 'https://images.pexels.com/photos/3182765/pexels-photo-3182765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       description: '現在、新たなプロジェクトが進行中です。公開まで今しばらくお待ちください。',
       comingSoon: true
     }
@@ -287,25 +297,26 @@ function Home() {
           </div>
         </section>
 
-        <section id="cases" className="py-20 lg:py-28 bg-slate-50">
+        <section id="cases" className="py-20 lg:py-28 bg-slate-50 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10">
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-800">事例紹介</h2>
                 <p className="mt-4 text-lg text-gray-600">
                   お客様の課題に向き合い、共に創り上げた解決策の一部をご紹介します。
                 </p>
               </div>
 
-              {/* Firework風カードグリッド */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* ▼▼▼ 横スクロールエリア (Scrollbarを隠してスナップさせる) ▼▼▼ */}
+              <div className="flex overflow-x-auto pb-8 -mx-4 px-4 space-x-6 snap-x snap-mandatory scrollbar-hide">
                 {cases.map((item) => (
                   <div 
                     key={item.id} 
-                    className={`group bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col h-full ${
+                    // ▼▼▼ カードの幅を固定 (スマホ:画面の85%, PC:400px) ▼▼▼
+                    className={`flex-shrink-0 w-[85vw] md:w-[400px] snap-center group bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col ${
                       item.comingSoon 
-                        ? 'opacity-80 pointer-events-none grayscale' // Coming Soon用スタイル
-                        : 'hover:shadow-2xl hover:-translate-y-1 cursor-pointer' // 通常スタイル
+                        ? 'opacity-80 pointer-events-none grayscale'
+                        : 'hover:shadow-2xl hover:-translate-y-1 cursor-pointer'
                     }`}
                   >
                     {/* 画像エリア */}
@@ -318,7 +329,6 @@ function Home() {
                         }`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                      {/* カテゴリータグ */}
                       <span className={`absolute top-4 left-4 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md ${
                         item.comingSoon ? 'bg-slate-500' : 'bg-sky-600'
                       }`}>
@@ -331,16 +341,15 @@ function Home() {
                       <div className="text-sm font-semibold text-slate-400 mb-2">
                         {item.client}
                       </div>
-                      <h3 className={`text-xl font-bold text-slate-800 mb-3 leading-snug transition-colors ${
+                      <h3 className={`text-xl font-bold text-slate-800 mb-3 leading-snug transition-colors whitespace-normal ${
                         !item.comingSoon && 'group-hover:text-sky-600'
                       }`}>
                         {item.title}
                       </h3>
-                      <p className="text-slate-600 text-sm line-clamp-3 mb-6 flex-grow">
+                      <p className="text-slate-600 text-sm line-clamp-3 mb-6 flex-grow whitespace-normal">
                         {item.description}
                       </p>
                       
-                      {/* Read More リンク（Coming Soon以外のみ表示） */}
                       {!item.comingSoon && (
                         <Link to="/case/ondo" className="flex items-center text-sky-600 font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4">
                           詳細を見る <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
