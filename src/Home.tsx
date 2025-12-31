@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // ▼▼▼ HelmetProviderはmain.tsxにあるので、ここにはHelmetのみインポート ▼▼▼
 import { Helmet } from 'react-helmet-async';
 import CookieConsent from 'react-cookie-consent';
-import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, ArrowRight } from 'lucide-react';
+import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, ArrowRight, BookOpen } from 'lucide-react';
 
 import logo from './assets/logo.png';
 import miyanoImage from './assets/miyano.jpg';
@@ -194,6 +194,15 @@ function Home() {
               <NavLink to="#cases">事例紹介</NavLink>
               <NavLink to="#team">Team</NavLink>
               <NavLink to="#company-profile">会社概要</NavLink>
+              <a 
+                href="https://note.com/ailaf_038" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center text-gray-600 hover:text-[#2cb696] transition-colors duration-300 font-bold"
+              >
+                <BookOpen className="w-4 h-4 mr-1" />
+                Note
+              </a>
             </div>
             <div className="md:hidden flex items-center">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700">
@@ -212,6 +221,16 @@ function Home() {
             <NavLink to="#cases" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事例紹介</span></NavLink>
             <NavLink to="#team" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">Team</span></NavLink>
             <NavLink to="#company-profile" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
+            <a 
+              href="https://note.com/ailaf_038"
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="flex items-center px-3 py-2 text-gray-700 hover:text-[#2cb696]"
+            >
+              <BookOpen className="w-4 h-4 mr-2" />
+              <span className="font-bold">公式Note</span>
+            </a>
           </div>
         </div>
       )}
@@ -494,6 +513,9 @@ function Home() {
             <NavLink to="#team">Team</NavLink>
             <NavLink to="#company-profile">会社概要</NavLink>
             <NavLink to="#faq">FAQ</NavLink>
+            <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#2cb696] transition-colors">
+              Note
+            </a>
           </div>
           <div className="mt-8 pt-8 border-t border-slate-700 text-center">
             <p className="text-sm">&copy; {currentYear} {companyName}. All rights reserved.</p>
