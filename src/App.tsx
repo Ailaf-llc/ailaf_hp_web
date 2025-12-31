@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// ▼▼▼ 追加: Helmet (SEO用) と CookieConsent (クッキー同意用) をインポート ▼▼▼
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import CookieConsent from 'react-cookie-consent';
-// ▼▼▼ 追加: メールアイコン (Mail) をインポート ▼▼▼
-import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, BookOpen } from 'lucide-react';
+import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, BookOpen, Linkedin, Twitter } from 'lucide-react';
 
 import logo from './assets/logo.png';
 import miyanoImage from './assets/miyano.jpg';
@@ -123,11 +121,9 @@ function App() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    // ▼▼▼ 追加: HelmetProviderでアプリ全体を囲む (SEOタグ管理のため) ▼▼▼
     <HelmetProvider>
       <div className="min-h-screen bg-white font-sans">
         
-        {/* ▼▼▼ 追加: SEO用メタタグ設定 ▼▼▼ */}
         <Helmet>
           <title>Ailaf LLC | DXを、もっと身近に。あなたのペースで。</title>
           <meta name="description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。" />
@@ -152,16 +148,44 @@ function App() {
                 <NavLink to="#cases">事例紹介</NavLink>
                 <NavLink to="#team">Team</NavLink>
                 <NavLink to="#company-profile">会社概要</NavLink>
-                <a 
-                  href="https://note.com/ailaf_038" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-[#2cb696] transition-colors duration-300 font-bold"
-                >
-                  <BookOpen className="w-4 h-4 mr-1" />
-                  Note
-                </a>
-              </div>
+                
+                {/* ▼▼▼ ヘッダーのアイコン横並びエリア ▼▼▼ */}
+                <div className="flex items-center space-x-5 pl-4 border-l border-gray-200">
+                  {/* Note */}
+                  <a 
+                    href="https://note.com/ailaf_038" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-[#2cb696] transition-colors duration-300"
+                    aria-label="Note"
+                  >
+                    <BookOpen className="w-5 h-5" />
+                  </a>
+
+                  {/* X (Twitter) */}
+                  <a 
+                    href="https://x.com/Ailafllc202577" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-black transition-colors duration-300"
+                    aria-label="X"
+                  >
+                    <XIcon className="w-5 h-5" />
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a 
+                    href="https://www.linkedin.com/company/ailaf-llc" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-[#0a66c2] transition-colors duration-300"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                </div>
+              </div> {/* ★修正: ここに抜けていた閉じタグを追加しました！ */}
+
               <div className="md:hidden flex items-center">
                 <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700">
                   {isMenuOpen ? <CloseIcon /> : <Menu />}
@@ -179,58 +203,61 @@ function App() {
               <NavLink to="#cases" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事例紹介</span></NavLink>
               <NavLink to="#team" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">Team</span></NavLink>
               <NavLink to="#company-profile" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
-              <a 
-              href="https://note.com/ailaf_038"
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={closeMenu}
-              className="flex items-center px-3 py-2 text-gray-700 hover:text-[#2cb696]"
-              >
-                Note
-              </a>
+              
+              {/* ▼▼▼ スマホメニュー用SNSアイコンエリア ▼▼▼ */}
+              <div className="flex items-center space-x-8 px-3 py-4 mt-2 border-t border-gray-100">
+                <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#2cb696]">
+                  <BookOpen className="w-6 h-6" />
+                </a>
+                <a href="https://x.com/Ailafllc202577" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black">
+                  <XIcon className="w-6 h-6" />
+                </a>
+                <a href="https://www.linkedin.com/company/ailaf-llc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#0a66c2]">
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </div>
             </div>
           </div>
         )}
 
         <main>
           {/* Hero Section */}
-        <section id="hero" className="relative text-white">
-          <div className="absolute inset-0">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${heroImageUrl})` }}
-            ></div>
-            <div className="absolute inset-0 bg-slate-900/70"></div>
-          </div>
-
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
-              <FadeInSection>
-                <div className="text-center">
-                  <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
-                    DXを、もっと身近に。<br />
-                    明日から変わる業務改善を、あなたのペースで。
-                  </h1>
-                  <p className="text-lg text-slate-200 max-w-3xl mx-auto mb-12">
-                    アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
-                    専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
-                  </p>
-                  {/* ▼▼▼ 修正: ボタンを有効化し、クリックで#contactへ飛ぶように変更 ▼▼▼ */}
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-sky-500/30 hover:-translate-y-1 inline-block"
-                  >
-                    無料相談・お問い合わせ
-                  </a>
-                </div>
-              </FadeInSection>
+          <section id="hero" className="relative text-white">
+            <div className="absolute inset-0">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${heroImageUrl})` }}
+              ></div>
+              <div className="absolute inset-0 bg-slate-900/70"></div>
             </div>
-          </div>
-        </section>
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
+                <FadeInSection>
+                  <div className="text-center">
+                    <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
+                      DXを、もっと身近に。<br />
+                      明日から変わる業務改善を、あなたのペースで。
+                    </h1>
+                    <p className="text-lg text-slate-200 max-w-3xl mx-auto mb-12">
+                      アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
+                      専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
+                    </p>
+                    <a
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-sky-500/30 hover:-translate-y-1 inline-block"
+                    >
+                      無料相談・お問い合わせ
+                    </a>
+                  </div>
+                </FadeInSection>
+              </div>
+            </div>
+          </section>
 
           <section id="services" className="py-20 lg:py-28">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -376,29 +403,28 @@ function App() {
           </section>
 
           {/* Contact Section */}
-        <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <FadeInSection>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">お問い合わせ</h2>
-              <p className="text-lg text-slate-300 mb-10 leading-relaxed">
-                メールでのご相談を随時受け付けております。<br />
-                業務改善のご相談、費用感の確認など、まずはお気軽にご連絡ください。
-              </p>
-              
-              {/* ▼▼▼ 追加: メールリンクをボタンとして大きく表示 ▼▼▼ */}
-              <a 
-                href="mailto:contact@ailaf.co.jp"
-                className="group inline-flex items-center justify-center bg-white text-slate-900 hover:bg-sky-50 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
-              >
-                <Mail className="w-6 h-6 mr-3 text-sky-600 group-hover:scale-110 transition-transform" />
-                contact@ailaf.co.jp へメールを送る
-              </a>
-              <p className="mt-4 text-sm text-slate-400">
-                ※メーラーが起動します
-              </p>
-            </FadeInSection>
-          </div>
-        </section>
+          <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <FadeInSection>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6">お問い合わせ</h2>
+                <p className="text-lg text-slate-300 mb-10 leading-relaxed">
+                  メールでのご相談を随時受け付けております。<br />
+                  業務改善のご相談、費用感の確認など、まずはお気軽にご連絡ください。
+                </p>
+                
+                <a 
+                  href="mailto:contact@ailaf.co.jp"
+                  className="group inline-flex items-center justify-center bg-white text-slate-900 hover:bg-sky-50 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                >
+                  <Mail className="w-6 h-6 mr-3 text-sky-600 group-hover:scale-110 transition-transform" />
+                  contact@ailaf.co.jp へメールを送る
+                </a>
+                <p className="mt-4 text-sm text-slate-400">
+                  ※メーラーが起動します
+                </p>
+              </FadeInSection>
+            </div>
+          </section>
         </main>
 
         <footer className="bg-slate-900 text-slate-400 py-12">
@@ -406,15 +432,54 @@ function App() {
             <div className="text-center mb-8">
               <img src={logo} alt={companyName} className="h-12 w-auto mb-4 mx-auto" />
               <h3 className="text-white text-lg font-semibold mb-2">{companyName}</h3>
-              {/* ▼▼▼ 追加: お問い合わせメールアドレス ▼▼▼ */}
+              
+              {/* ▼▼▼ 追加: フッターにもお問い合わせメール ▼▼▼ */}
               <a 
                 href="mailto:contact@ailaf.co.jp" 
-                className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300"
+                className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300 mb-6"
               >
                 <Mail className="w-4 h-4 mr-2" />
                 contact@ailaf.co.jp
               </a>
+
+              {/* ▼▼▼ 修正: Firework風 SNSアイコンのみの表示 ▼▼▼ */}
+              <div className="flex justify-center items-center space-x-6 mb-8">
+                {/* Note */}
+                <a 
+                  href="https://note.com/ailaf_038" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-slate-400 hover:text-[#2cb696] transition-transform hover:scale-110 duration-300"
+                  aria-label="Note"
+                >
+                  <BookOpen className="w-6 h-6" />
+                </a>
+
+                {/* X */}
+                <a 
+                  href="https://x.com/Ailafllc202577" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-slate-400 hover:text-white transition-transform hover:scale-110 duration-300"
+                  aria-label="X"
+                >
+                  <XIcon className="w-6 h-6" />
+                </a>
+
+                {/* LinkedIn */}
+                <a 
+                  href="https://www.linkedin.com/company/ailaf-llc" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-slate-400 hover:text-[#0a66c2] transition-transform hover:scale-110 duration-300"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </div>
             </div>
+
+            {/* ▼▼▼ 修正: テキストリンクからSNSを削除 ▼▼▼ */}
             <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
               <NavLink to="#services">事業内容</NavLink>
               <NavLink to="#strengths">選ばれる理由</NavLink>
@@ -422,24 +487,21 @@ function App() {
               <NavLink to="#team">Team</NavLink>
               <NavLink to="#company-profile">会社概要</NavLink>
               <NavLink to="#faq">FAQ</NavLink>
-              <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#2cb696] transition-colors">
-                Note
-              </a>
             </div>
+
             <div className="mt-8 pt-8 border-t border-slate-700 text-center">
               <p className="text-sm">&copy; {currentYear} {companyName}. All rights reserved.</p>
             </div>
           </div>
         </footer>
 
-        {/* ▼▼▼ 追加: クッキー同意バナー ▼▼▼ */}
         <CookieConsent
           location="bottom"
           buttonText="同意する"
           cookieName="ailaf-cookie-consent"
-          style={{ background: "#1e293b", alignItems: "center" }} // slate-800
+          style={{ background: "#1e293b", alignItems: "center" }}
           buttonStyle={{ 
-            background: "#0284c7", // sky-600
+            background: "#0284c7",
             color: "#ffffff", 
             fontSize: "13px", 
             borderRadius: "6px",
@@ -471,6 +533,17 @@ const CompanyInfoRow: React.FC<{ label: string; value: string; isEven?: boolean 
     <dt className="text-sm font-medium text-slate-400">{label}</dt>
     <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">{value}</dd>
   </div>
+);
+
+const XIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+  </svg>
 );
 
 export default App;
