@@ -144,11 +144,9 @@ function Home() {
     { name: '宮野 聖史', role: '代表社員・CEO', image: miyanoImage, bio: '製薬企業にて臨床開発業務からキャリアを開始し、別の製薬企業ではデジタルソリューション開発やDX推進に従事。戦略立案から現場実装まで幅広く携わる中で、より体系的に経営を学びたいと考え、早稲田大学大学院経営管理研究科（WBS）に進学。2025年3月に修了。事業や組織の全体像を設計するビジネスアーキテクトとして、戦略策定からシステム設計・導入定着まで一貫してリードできる点を強みとする。多様な働き方が可能となった現在、より直接的に社会へ価値を還元したいとの思いから、志を同じくする仲間とともに2025年に兼業集団としてアイラフを共同設立。各メンバーが本業で培った専門性を持ち寄ることで、多角的な視点と柔軟な発想を活かした少数精鋭のチームとして活動している。中小企業の持続的成長を支援し、社会に直接的に貢献することを目指している。', links: [] },
     { name: '山添 達郎', role: '業務執行社員・CBO', image: yamazoeImage, bio: '国内外の大手企業からスタートアップまで幅広く経験し、デジタル広告と動画ソリューション領域で営業・事業開発やパートナーシップ構築に従事。事業のGTM設計やスケールアップに強みを持つ。', links: [] },
     {
-      name: '田畑 佑樹', role: '業務執行社員・CDO', image: tabataImage, bio: 'アプリケーションからインフラまで精通する、プロダクト志向のDXアーキテクト。インフラ企業、製薬会社にてDX推進を牽引し、特に生成AIアプリ開発プロジェクトでは、アーキテクチャ設計からUI/UXデザインまで担当し全社展開を成功させた実績を持つ。技術選定からプロダクトデザインまで、一気通貫でのご支援が可能。', links: [
-        { title: 'Google Cloud: 生成AIのビジネス適用', url: 'https://cloud.google.com/blog/ja/topics/customers/chugai-pharm-generating-ai-to-drive-operational-efficiency-and-value-creation/' },
-        { title: 'AWS: 生成AIアプリの全社導入', url: 'https://aws.amazon.com/jp/solutions/case-studies/chugai-pharm/' },
-        { title: 'note: 生成AIアプリ開発を内製アジャイルで', url: 'https://note.chugai-pharm.co.jp/n/n2e7083b32b68?magazine_key=m5745f166b9de' },
-        { title: '日経XTECH: 内製アジャイルでDXを急加速', url: 'https://special.nikkeibp.co.jp/atclh/NXT/25/pwc0603/' }
+      name: '田畑 佑樹', role: '業務執行社員・CDO', image: tabataImage, bio: 'アプリケーションからインフラまで精通する、プロダクト志向のDXアーキテクト。インフラ企業、製薬会社にてDX推進を牽引し、特に生成AIアプリ開発プロジェクトでは、アーキテクチャ設計からUI/UXデザインまで担当し全社展開を成功させた実績を持つ。技術選定からプロダクトデザインまで、一気通貫でのご支援が可能。',
+      links: [
+        { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/佑樹-田畑-4078701b5' }
       ]
     }
   ];
