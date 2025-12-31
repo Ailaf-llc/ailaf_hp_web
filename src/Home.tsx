@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// ▼▼▼ HelmetProviderはmain.tsxにあるので、ここにはHelmetのみインポート ▼▼▼
-import { Helmet } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import CookieConsent from 'react-cookie-consent';
-import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, ArrowRight } from 'lucide-react';
+// ▼▼▼ 修正: ArrowRight を追加しました ▼▼▼
+import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, BookOpen, Linkedin, ArrowRight } from 'lucide-react';
 
 import logo from './assets/logo.png';
 import miyanoImage from './assets/miyano.jpg';
 import yamazoeImage from './assets/yamazoe.jpg';
 import tabataImage from './assets/tabata.jpg';
-
 
 // スクロールで要素をフェードインさせるためのカスタムコンポーネント
 const FadeInSection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -66,15 +65,13 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children, onClick }) => {
   );
 };
 
-// メインのHomeコンポーネント
-function Home() {
+// メインのAppコンポーネント
+function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const companyName = "アイラフ合同会社 Ailaf LLC";
   const currentYear = new Date().getFullYear();
-
-  // ▼▼▼ Heroセクションの背景画像URL ▼▼▼
   const heroImageUrl = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg";
 
   // --- データ定義 ---
@@ -99,7 +96,7 @@ function Home() {
     { title: '常にアップデートされる最新知見', description: 'メンバーは全員、DXや事業開発の最前線で活躍する現役プレイヤー。日々アップデートされる現場のリアルな情報と最新技術トレンドを、お客様の課題解決に活かします。', icon: <BarChart3 className="w-8 h-8 mx-auto mb-4 text-sky-400" /> }
   ];
 
-  // ▼▼▼ 事例データの定義（4枚にして横スクロール用） ▼▼▼
+  // ▼▼▼ 事例データの定義（ONDO様反映版 + Coming Soon 4枚構成） ▼▼▼
   const cases = [
     {
       id: 1,
@@ -129,7 +126,6 @@ function Home() {
       comingSoon: true
     },
     {
-      // ▼ 追加した4枚目
       id: 4,
       client: 'Coming Soon',
       category: '準備中',
@@ -144,7 +140,10 @@ function Home() {
     { name: '宮野 聖史', role: '代表社員・CEO', image: miyanoImage, bio: '製薬企業にて臨床開発業務からキャリアを開始し、別の製薬企業ではデジタルソリューション開発やDX推進に従事。戦略立案から現場実装まで幅広く携わる中で、より体系的に経営を学びたいと考え、早稲田大学大学院経営管理研究科（WBS）に進学。2025年3月に修了。事業や組織の全体像を設計するビジネスアーキテクトとして、戦略策定からシステム設計・導入定着まで一貫してリードできる点を強みとする。多様な働き方が可能となった現在、より直接的に社会へ価値を還元したいとの思いから、志を同じくする仲間とともに2025年に兼業集団としてアイラフを共同設立。各メンバーが本業で培った専門性を持ち寄ることで、多角的な視点と柔軟な発想を活かした少数精鋭のチームとして活動している。中小企業の持続的成長を支援し、社会に直接的に貢献することを目指している。', links: [] },
     { name: '山添 達郎', role: '業務執行社員・CBO', image: yamazoeImage, bio: '国内外の大手企業からスタートアップまで幅広く経験し、デジタル広告と動画ソリューション領域で営業・事業開発やパートナーシップ構築に従事。事業のGTM設計やスケールアップに強みを持つ。', links: [] },
     {
-      name: '田畑 佑樹', role: '業務執行社員・CDO', image: tabataImage, bio: 'アプリケーションからインフラまで精通する、プロダクト志向のDXアーキテクト。インフラ企業、製薬会社にてDX推進を牽引し、特に生成AIアプリ開発プロジェクトでは、アーキテクチャ設計からUI/UXデザインまで担当し全社展開を成功させた実績を持つ。技術選定からプロダクトデザインまで、一気通貫でのご支援が可能。',
+      name: '田畑 佑樹', 
+      role: '業務執行社員・CDO', 
+      image: tabataImage, 
+      bio: 'アプリケーションからインフラまで精通する、プロダクト志向のDXアーキテクト。インフラ企業、製薬会社にてDX推進を牽引し、特に生成AIアプリ開発プロジェクトでは、アーキテクチャ設計からUI/UXデザインまで担当し全社展開を成功させた実績を持つ。技術選定からプロダクトデザインまで、一気通貫でのご支援が可能。', 
       links: [
         { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/佑樹-田畑-4078701b5' }
       ]
@@ -163,363 +162,445 @@ function Home() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    // HelmetProviderは削除しました (main.tsxにあるため)
-    <div className="min-h-screen bg-white font-sans">
-      
-      {/* ▼▼▼ 追加: SEO用メタタグ設定 ▼▼▼ */}
-      <Helmet>
-        <title>Ailaf LLC | DXを、もっと身近に。あなたのペースで。</title>
-        <meta name="description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。" />
-        <meta property="og:title" content="Ailaf LLC | DXを、もっと身近に。あなたのペースで。" />
-        <meta property="og:description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。中小企業の業務改善・DX推進を伴走支援します。" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={heroImageUrl} />
-      </Helmet>
+    <HelmetProvider>
+      <div className="min-h-screen bg-white font-sans">
+        
+        <Helmet>
+          <title>Ailaf LLC | DXを、もっと身近に。あなたのペースで。</title>
+          <meta name="description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。" />
+          <meta property="og:title" content="Ailaf LLC | DXを、もっと身近に。あなたのペースで。" />
+          <meta property="og:description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。中小企業の業務改善・DX推進を伴走支援します。" />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content={heroImageUrl} />
+        </Helmet>
 
-      <nav className="bg-white/80 border-b border-gray-200 sticky top-0 z-50 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <a href="#hero" onClick={(e) => { e.preventDefault(); document.querySelector('#hero')?.scrollIntoView({ behavior: 'smooth' }); }} className="flex items-center">
-                <img src={logo} alt={companyName} className="h-8 w-auto mr-2" />
-                <span className="text-xl font-bold text-gray-800">Ailaf LLC</span>
-              </a>
+        <nav className="bg-white/80 border-b border-gray-200 sticky top-0 z-50 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between h-16">
+              <div className="flex items-center">
+                <a href="#hero" onClick={(e) => { e.preventDefault(); document.querySelector('#hero')?.scrollIntoView({ behavior: 'smooth' }); }} className="flex items-center">
+                  <img src={logo} alt={companyName} className="h-8 w-auto mr-2" />
+                  <span className="text-xl font-bold text-gray-800">Ailaf LLC</span>
+                </a>
+              </div>
+              <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <NavLink to="#services">事業内容</NavLink>
+                <NavLink to="#strengths">選ばれる理由</NavLink>
+                <NavLink to="#cases">事例紹介</NavLink>
+                <NavLink to="#team">Team</NavLink>
+                <NavLink to="#company-profile">会社概要</NavLink>
+                
+                {/* ▼▼▼ ヘッダーのアイコン横並びエリア (ミニマルデザイン) ▼▼▼ */}
+                <div className="flex items-center space-x-5 pl-4 border-l border-gray-200">
+                  {/* Note */}
+                  <a 
+                    href="https://note.com/ailaf_038" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-[#2cb696] transition-colors duration-300"
+                    aria-label="Note"
+                  >
+                    <BookOpen className="w-5 h-5" />
+                  </a>
+
+                  {/* X (Twitter) */}
+                  <a 
+                    href="https://x.com/Ailafllc202577" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-black transition-colors duration-300"
+                    aria-label="X"
+                  >
+                    <XIcon className="w-5 h-5" />
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a 
+                    href="https://www.linkedin.com/company/ailaf-llc" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-[#0a66c2] transition-colors duration-300"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="md:hidden flex items-center">
+                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700">
+                  {isMenuOpen ? <CloseIcon /> : <Menu />}
+                </button>
+              </div>
             </div>
-            <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
+          </div>
+        </nav>
+
+        {isMenuOpen && (
+          <div className="fixed top-16 md:hidden w-full bg-white border-b shadow-lg z-40">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <NavLink to="#services" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事業内容</span></NavLink>
+              <NavLink to="#strengths" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">選ばれる理由</span></NavLink>
+              <NavLink to="#cases" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事例紹介</span></NavLink>
+              <NavLink to="#team" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">Team</span></NavLink>
+              <NavLink to="#company-profile" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
+              
+              {/* ▼▼▼ スマホメニュー用SNSアイコンエリア ▼▼▼ */}
+              <div className="flex items-center space-x-8 px-3 py-4 mt-2 border-t border-gray-100">
+                <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#2cb696]">
+                  <BookOpen className="w-6 h-6" />
+                </a>
+                <a href="https://x.com/Ailafllc202577" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black">
+                  <XIcon className="w-6 h-6" />
+                </a>
+                <a href="https://www.linkedin.com/company/ailaf-llc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#0a66c2]">
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <main>
+          {/* Hero Section */}
+          <section id="hero" className="relative text-white">
+            <div className="absolute inset-0">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${heroImageUrl})` }}
+              ></div>
+              <div className="absolute inset-0 bg-slate-900/70"></div>
+            </div>
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
+                <FadeInSection>
+                  <div className="text-center">
+                    <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
+                      DXを、もっと身近に。<br />
+                      明日から変わる業務改善を、あなたのペースで。
+                    </h1>
+                    <p className="text-lg text-slate-200 max-w-3xl mx-auto mb-12">
+                      アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
+                      専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
+                    </p>
+                    <a
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-sky-500/30 hover:-translate-y-1 inline-block"
+                    >
+                      無料相談・お問い合わせ
+                    </a>
+                  </div>
+                </FadeInSection>
+              </div>
+            </div>
+          </section>
+
+          <section id="services" className="py-20 lg:py-28">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeInSection>
+                <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">事業内容</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {services.map((service) => (
+                    <div key={service.title} className="bg-slate-50 p-8 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
+                      <div className="flex items-center mb-4">
+                        {service.icon}
+                        <p className="ml-4 font-semibold text-gray-500">{service.target}</p>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-gray-900">{service.title}</h3>
+                      <p className="text-gray-600">{service.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </FadeInSection>
+            </div>
+          </section>
+
+          <section id="strengths" className="py-20 lg:py-28 bg-slate-900 text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeInSection>
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl lg:text-4xl font-bold">アイラフが選ばれる理由</h2>
+                  <p className="mt-4 text-lg text-slate-300">本業を持つプロ集団だからこそ提供できる、3つの価値があります。</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                  {strengths.map((strength) => (
+                    <div key={strength.title} className="bg-slate-800 p-8 rounded-xl border border-slate-700">
+                      {strength.icon}
+                      <h3 className="text-xl font-semibold text-sky-400 mb-3">{strength.title}</h3>
+                      <p className="text-slate-300 text-left">{strength.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </FadeInSection>
+            </div>
+          </section>
+
+          {/* ▼▼▼ 事例紹介: 横スクロール (カルーセル) 形式 ▼▼▼ */}
+          <section id="cases" className="py-20 lg:py-28 bg-slate-50 overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeInSection>
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl lg:text-4xl font-bold text-gray-800">事例紹介</h2>
+                  <p className="mt-4 text-lg text-gray-600">
+                    お客様の課題に向き合い、共に創り上げた解決策の一部をご紹介します。
+                  </p>
+                </div>
+
+                <div className="flex overflow-x-auto pb-8 -mx-4 px-4 space-x-6 snap-x snap-mandatory scrollbar-hide">
+                  {cases.map((item) => (
+                    <div 
+                      key={item.id} 
+                      className={`flex-shrink-0 w-[85vw] md:w-[400px] snap-center group bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col ${
+                        item.comingSoon 
+                          ? 'opacity-80 pointer-events-none grayscale'
+                          : 'hover:shadow-2xl hover:-translate-y-1 cursor-pointer'
+                      }`}
+                    >
+                      {/* 画像エリア */}
+                      <div className="relative h-56 overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.title} 
+                          className={`w-full h-full object-cover transition-transform duration-500 ${
+                            !item.comingSoon && 'group-hover:scale-105'
+                          }`}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                        <span className={`absolute top-4 left-4 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md ${
+                          item.comingSoon ? 'bg-slate-500' : 'bg-sky-600'
+                        }`}>
+                          {item.category}
+                        </span>
+                      </div>
+
+                      {/* コンテンツエリア */}
+                      <div className="p-6 flex flex-col flex-grow">
+                        <div className="text-sm font-semibold text-slate-400 mb-2">
+                          {item.client}
+                        </div>
+                        <h3 className={`text-xl font-bold text-slate-800 mb-3 leading-snug transition-colors whitespace-normal ${
+                          !item.comingSoon && 'group-hover:text-sky-600'
+                        }`}>
+                          {item.title}
+                        </h3>
+                        <p className="text-slate-600 text-sm line-clamp-3 mb-6 flex-grow whitespace-normal">
+                          {item.description}
+                        </p>
+                        
+                        {!item.comingSoon && (
+                          <Link to="/case/ondo" className="flex items-center text-sky-600 font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4">
+                            詳細を見る <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </FadeInSection>
+            </div>
+          </section>
+
+          <section id="team" className="py-20 lg:py-28 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeInSection>
+                <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">Our Expert Team</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {team.map((member) => (
+                    <div key={member.name} className="bg-white p-8 rounded-xl shadow-xl flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                      <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-slate-200" />
+                      <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
+                      <p className="text-sky-600 font-semibold mb-4">{member.role}</p>
+                      <p className="text-gray-600 text-left text-sm mb-4 flex-grow">{member.bio}</p>
+                      {member.links.length > 0 && (
+                        <div className="mt-auto pt-4 border-t border-slate-200">
+                          <h4 className="font-semibold text-left mb-2 text-sm text-gray-500">関連リンク</h4>
+                          <ul className="space-y-2">
+                            {member.links.map((link, linkIndex) => (
+                              <li key={linkIndex}>
+                                <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline text-sm flex items-start text-left">
+                                  <LinkIcon className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
+                                  <span>{link.title}</span>
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </FadeInSection>
+            </div>
+          </section>
+
+          <section id="company-profile" className="py-20 lg:py-28 bg-slate-800 text-slate-300">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeInSection>
+                <h2 className="text-3xl lg:text-4xl font-bold text-center text-white mb-16">会社概要</h2>
+                <div className="bg-slate-900 shadow-lg overflow-hidden rounded-xl">
+                  <dl>
+                    <CompanyInfoRow label="商号" value={companyName} />
+                    <CompanyInfoRow label="設立年月日" value="2025年7月7日(令和7年7月7日)" isEven />
+                    <CompanyInfoRow label="資本金" value="500,000円" />
+                    <CompanyInfoRow label="事業年度" value="7月1日から翌年6月30日まで" isEven />
+                    <CompanyInfoRow label="代表者" value="代表社員 宮野 聖史" />
+                    <div className="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4 bg-slate-800">
+                      <dt className="text-sm font-medium text-slate-400">所在地</dt>
+                      <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
+                        東京都内
+                        <p className="text-xs text-slate-500 mt-1">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </FadeInSection>
+            </div>
+          </section>
+
+          <section id="faq" className="py-20 lg:py-28">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeInSection>
+                <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">よくある質問</h2>
+                <div className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <div key={faq.question} className="border border-slate-200 rounded-lg">
+                      <button
+                        className="w-full px-6 py-4 text-left flex justify-between items-center text-gray-800"
+                        onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                      >
+                        <span className="font-medium">{faq.question}</span>
+                        <ChevronDown className={`transform transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
+                      </button>
+                      {openFaq === index && (
+                        <div className="px-6 pb-4 text-gray-600">
+                          <p>{faq.answer}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </FadeInSection>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <FadeInSection>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6">お問い合わせ</h2>
+                <p className="text-lg text-slate-300 mb-10 leading-relaxed">
+                  メールでのご相談を随時受け付けております。<br />
+                  業務改善のご相談、費用感の確認など、まずはお気軽にご連絡ください。
+                </p>
+                
+                <a 
+                  href="mailto:contact@ailaf.co.jp"
+                  className="group inline-flex items-center justify-center bg-white text-slate-900 hover:bg-sky-50 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                >
+                  <Mail className="w-6 h-6 mr-3 text-sky-600 group-hover:scale-110 transition-transform" />
+                  contact@ailaf.co.jp へメールを送る
+                </a>
+                <p className="mt-4 text-sm text-slate-400">
+                  ※メーラーが起動します
+                </p>
+              </FadeInSection>
+            </div>
+          </section>
+        </main>
+
+        <footer className="bg-slate-900 text-slate-400 py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8">
+              <img src={logo} alt={companyName} className="h-12 w-auto mb-4 mx-auto" />
+              <h3 className="text-white text-lg font-semibold mb-2">{companyName}</h3>
+              
+              <a 
+                href="mailto:contact@ailaf.co.jp" 
+                className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300 mb-6"
+              >
+                <Mail className="w-4 h-4 mr-2" />
+                contact@ailaf.co.jp
+              </a>
+
+              {/* ▼▼▼ Firework風 SNSアイコンのみの表示 ▼▼▼ */}
+              <div className="flex justify-center items-center space-x-6 mb-8">
+                {/* Note */}
+                <a 
+                  href="https://note.com/ailaf_038" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-slate-400 hover:text-[#2cb696] transition-transform hover:scale-110 duration-300"
+                  aria-label="Note"
+                >
+                  <BookOpen className="w-6 h-6" />
+                </a>
+
+                {/* X */}
+                <a 
+                  href="https://x.com/Ailafllc202577" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-slate-400 hover:text-white transition-transform hover:scale-110 duration-300"
+                  aria-label="X"
+                >
+                  <XIcon className="w-6 h-6" />
+                </a>
+
+                {/* LinkedIn */}
+                <a 
+                  href="https://www.linkedin.com/company/ailaf-llc" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-slate-400 hover:text-[#0a66c2] transition-transform hover:scale-110 duration-300"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+
+            <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
               <NavLink to="#services">事業内容</NavLink>
               <NavLink to="#strengths">選ばれる理由</NavLink>
               <NavLink to="#cases">事例紹介</NavLink>
               <NavLink to="#team">Team</NavLink>
               <NavLink to="#company-profile">会社概要</NavLink>
+              <NavLink to="#faq">FAQ</NavLink>
             </div>
-            <div className="md:hidden flex items-center">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700">
-                {isMenuOpen ? <CloseIcon /> : <Menu />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
 
-      {isMenuOpen && (
-        <div className="fixed top-16 md:hidden w-full bg-white border-b shadow-lg z-40">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            <NavLink to="#services" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事業内容</span></NavLink>
-            <NavLink to="#strengths" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">選ばれる理由</span></NavLink>
-            <NavLink to="#cases" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事例紹介</span></NavLink>
-            <NavLink to="#team" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">Team</span></NavLink>
-            <NavLink to="#company-profile" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
-          </div>
-        </div>
-      )}
-
-      <main>
-        {/* ▼▼▼ Hero Section: 背景画像を追加 ▼▼▼ */}
-        <section id="hero" className="relative text-white">
-          {/* 背景画像とオーバーレイ */}
-          <div className="absolute inset-0">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${heroImageUrl})` }}
-            ></div>
-            <div className="absolute inset-0 bg-slate-900/70"></div>
-          </div>
-
-          {/* コンテンツ */}
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
-              <FadeInSection>
-                <div className="text-center">
-                  <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight text-white">
-                    DXを、もっと身近に。<br />
-                    明日から変わる業務改善を、あなたのペースで。
-                  </h1>
-                  <p className="text-lg text-slate-200 max-w-3xl mx-auto mb-12">
-                    アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
-                    専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
-                  </p>
-                  {/* ▼▼▼ 修正: ボタンを有効化し、クリックで#contactへ飛ぶように変更 ▼▼▼ */}
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-sky-500/30 hover:-translate-y-1 inline-block"
-                  >
-                    無料相談・お問い合わせ
-                  </a>
-                </div>
-              </FadeInSection>
+            <div className="mt-8 pt-8 border-t border-slate-700 text-center">
+              <p className="text-sm">&copy; {currentYear} {companyName}. All rights reserved.</p>
             </div>
           </div>
-        </section>
+        </footer>
 
-        <section id="services" className="py-20 lg:py-28">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <FadeInSection>
-              <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">事業内容</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {services.map((service) => (
-                  <div key={service.title} className="bg-slate-50 p-8 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                    <div className="flex items-center mb-4">
-                      {service.icon}
-                      <p className="ml-4 font-semibold text-gray-500">{service.target}</p>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 text-gray-900">{service.title}</h3>
-                    <p className="text-gray-600">{service.description}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
+        <CookieConsent
+          location="bottom"
+          buttonText="同意する"
+          cookieName="ailaf-cookie-consent"
+          style={{ background: "#1e293b", alignItems: "center" }}
+          buttonStyle={{ 
+            background: "#0284c7",
+            color: "#ffffff", 
+            fontSize: "13px", 
+            borderRadius: "6px",
+            padding: "8px 20px",
+            fontWeight: "bold"
+          }}
+          expires={150}
+        >
+          <span className="text-sm">
+            当サイトでは、サービスの向上とお客様へのより良い体験の提供のためにクッキー（Cookie）を使用しています。
+          </span>
+        </CookieConsent>
 
-        <section id="strengths" className="py-20 lg:py-28 bg-slate-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <FadeInSection>
-              <div className="text-center mb-16">
-                <h2 className="text-3xl lg:text-4xl font-bold">アイラフが選ばれる理由</h2>
-                <p className="mt-4 text-lg text-slate-300">本業を持つプロ集団だからこそ提供できる、3つの価値があります。</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                {strengths.map((strength) => (
-                  <div key={strength.title} className="bg-slate-800 p-8 rounded-xl border border-slate-700">
-                    {strength.icon}
-                    <h3 className="text-xl font-semibold text-sky-400 mb-3">{strength.title}</h3>
-                    <p className="text-slate-300 text-left">{strength.description}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
-
-        <section id="cases" className="py-20 lg:py-28 bg-slate-50 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <FadeInSection>
-              <div className="text-center mb-10">
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800">事例紹介</h2>
-                <p className="mt-4 text-lg text-gray-600">
-                  お客様の課題に向き合い、共に創り上げた解決策の一部をご紹介します。
-                </p>
-              </div>
-
-              {/* ▼▼▼ 横スクロールエリア (Scrollbarを隠してスナップさせる) ▼▼▼ */}
-              <div className="flex overflow-x-auto pb-8 -mx-4 px-4 space-x-6 snap-x snap-mandatory scrollbar-hide">
-                {cases.map((item) => (
-                  <div 
-                    key={item.id} 
-                    // ▼▼▼ カードの幅を固定 (スマホ:画面の85%, PC:400px) ▼▼▼
-                    className={`flex-shrink-0 w-[85vw] md:w-[400px] snap-center group bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col ${
-                      item.comingSoon 
-                        ? 'opacity-80 pointer-events-none grayscale'
-                        : 'hover:shadow-2xl hover:-translate-y-1 cursor-pointer'
-                    }`}
-                  >
-                    {/* 画像エリア */}
-                    <div className="relative h-56 overflow-hidden">
-                      <img 
-                        src={item.image} 
-                        alt={item.title} 
-                        className={`w-full h-full object-cover transition-transform duration-500 ${
-                          !item.comingSoon && 'group-hover:scale-105'
-                        }`}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                      <span className={`absolute top-4 left-4 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md ${
-                        item.comingSoon ? 'bg-slate-500' : 'bg-sky-600'
-                      }`}>
-                        {item.category}
-                      </span>
-                    </div>
-
-                    {/* コンテンツエリア */}
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="text-sm font-semibold text-slate-400 mb-2">
-                        {item.client}
-                      </div>
-                      <h3 className={`text-xl font-bold text-slate-800 mb-3 leading-snug transition-colors whitespace-normal ${
-                        !item.comingSoon && 'group-hover:text-sky-600'
-                      }`}>
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-600 text-sm line-clamp-3 mb-6 flex-grow whitespace-normal">
-                        {item.description}
-                      </p>
-                      
-                      {!item.comingSoon && (
-                        <Link to="/case/ondo" className="flex items-center text-sky-600 font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4">
-                          詳細を見る <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
-
-        <section id="team" className="py-20 lg:py-28 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <FadeInSection>
-              <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">Our Expert Team</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {team.map((member) => (
-                  <div key={member.name} className="bg-white p-8 rounded-xl shadow-xl flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-                    <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-slate-200" />
-                    <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
-                    <p className="text-sky-600 font-semibold mb-4">{member.role}</p>
-                    <p className="text-gray-600 text-left text-sm mb-4 flex-grow">{member.bio}</p>
-                    {member.links.length > 0 && (
-                      <div className="mt-auto pt-4 border-t border-slate-200">
-                        <h4 className="font-semibold text-left mb-2 text-sm text-gray-500">関連リンク</h4>
-                        <ul className="space-y-2">
-                          {member.links.map((link, linkIndex) => (
-                            <li key={linkIndex}>
-                              <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline text-sm flex items-start text-left">
-                                <LinkIcon className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
-                                <span>{link.title}</span>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
-
-        <section id="company-profile" className="py-20 lg:py-28 bg-slate-800 text-slate-300">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <FadeInSection>
-              <h2 className="text-3xl lg:text-4xl font-bold text-center text-white mb-16">会社概要</h2>
-              <div className="bg-slate-900 shadow-lg overflow-hidden rounded-xl">
-                <dl>
-                  <CompanyInfoRow label="商号" value={companyName} />
-                  <CompanyInfoRow label="設立年月日" value="2025年7月7日(令和7年7月7日)" isEven />
-                  <CompanyInfoRow label="資本金" value="500,000円" />
-                  <CompanyInfoRow label="事業年度" value="7月1日から翌年6月30日まで" isEven />
-                  <CompanyInfoRow label="代表者" value="代表社員 宮野 聖史" />
-                  <div className="px-6 py-5 sm:grid sm:grid-cols-3 sm:gap-4 bg-slate-800">
-                    <dt className="text-sm font-medium text-slate-400">所在地</dt>
-                    <dd className="mt-1 text-sm text-white sm:mt-0 sm:col-span-2">
-                      東京都内
-                      <p className="text-xs text-slate-500 mt-1">※プライバシー保護のため、詳細な住所は非公開としておりますが特定商取引法に基づき、請求があった際には速やかに開示いたします。</p>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
-
-        <section id="faq" className="py-20 lg:py-28">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <FadeInSection>
-              <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">よくある質問</h2>
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={faq.question} className="border border-slate-200 rounded-lg">
-                    <button
-                      className="w-full px-6 py-4 text-left flex justify-between items-center text-gray-800"
-                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    >
-                      <span className="font-medium">{faq.question}</span>
-                      <ChevronDown className={`transform transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
-                    </button>
-                    {openFaq === index && (
-                      <div className="px-6 pb-4 text-gray-600">
-                        <p>{faq.answer}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
-
-          {/* Contact Section */}
-        <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <FadeInSection>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">お問い合わせ</h2>
-              <p className="text-lg text-slate-300 mb-10 leading-relaxed">
-                お問い合わせフォームは現在準備中ですが、メールでのご相談は随時受け付けております。<br />
-                業務改善のご相談、費用感の確認など、まずはお気軽にご連絡ください。
-              </p>
-              
-              {/* ▼▼▼ 追加: メールリンクをボタンとして大きく表示 ▼▼▼ */}
-              <a 
-                href="mailto:contact@ailaf.co.jp"
-                className="group inline-flex items-center justify-center bg-white text-slate-900 hover:bg-sky-50 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
-              >
-                <Mail className="w-6 h-6 mr-3 text-sky-600 group-hover:scale-110 transition-transform" />
-                contact@ailaf.co.jp へメールを送る
-              </a>
-              <p className="mt-4 text-sm text-slate-400">
-                ※メーラーが起動します
-              </p>
-            </FadeInSection>
-          </div>
-        </section>
-        </main>
-
-      <footer className="bg-slate-900 text-slate-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <img src={logo} alt={companyName} className="h-12 w-auto mb-4 mx-auto" />
-            <h3 className="text-white text-lg font-semibold mb-2">{companyName}</h3>
-            {/* ▼▼▼ 追加: フッターにもメールアドレスを表示 ▼▼▼ */}
-            <a 
-              href="mailto:contact@ailaf.co.jp" 
-              className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300"
-            >
-              <Mail className="w-4 h-4 mr-2" />
-              contact@ailaf.co.jp
-            </a>
-          </div>
-          <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
-            <NavLink to="#services">事業内容</NavLink>
-            <NavLink to="#strengths">選ばれる理由</NavLink>
-            <NavLink to="#cases">事例紹介</NavLink>
-            <NavLink to="#team">Team</NavLink>
-            <NavLink to="#company-profile">会社概要</NavLink>
-            <NavLink to="#faq">FAQ</NavLink>
-          </div>
-          <div className="mt-8 pt-8 border-t border-slate-700 text-center">
-            <p className="text-sm">&copy; {currentYear} {companyName}. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-      
-      {/* ▼▼▼ 追加: クッキー同意バナー ▼▼▼ */}
-      <CookieConsent
-        location="bottom"
-        buttonText="同意する"
-        cookieName="ailaf-cookie-consent"
-        style={{ background: "#1e293b", alignItems: "center" }} // slate-800
-        buttonStyle={{ 
-          background: "#0284c7", // sky-600
-          color: "#ffffff", 
-          fontSize: "13px", 
-          borderRadius: "6px",
-          padding: "8px 20px",
-          fontWeight: "bold"
-        }}
-        expires={150}
-      >
-        <span className="text-sm">
-          当サイトでは、サービスの向上とお客様へのより良い体験の提供のためにクッキー（Cookie）を使用しています。
-        </span>
-      </CookieConsent>
-
-    </div>
+      </div>
+    </HelmetProvider>
   );
 }
 
@@ -538,4 +619,16 @@ const CompanyInfoRow: React.FC<{ label: string; value: string; isEven?: boolean 
   </div>
 );
 
-export default Home;
+// ▼▼▼ X (旧Twitter) のロゴアイコンコンポーネント ▼▼▼
+const XIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+  </svg>
+);
+
+export default App;
