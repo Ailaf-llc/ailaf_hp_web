@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Cloud, Search, Database, BarChart3, Lock, Zap } from 'lucide-react';
+// ▼▼▼ Quote (引用アイコン) を追加 ▼▼▼
+import { ArrowLeft, CheckCircle2, Cloud, Search, Database, BarChart3, Lock, Zap, Quote } from 'lucide-react';
 
 const CaseOndo = () => {
   // ページ遷移時にトップへスクロール
@@ -22,8 +23,9 @@ const CaseOndo = () => {
             <span className="inline-block py-1 px-3 rounded-full bg-sky-600 text-sm font-bold mb-6">
               株式会社ONDO様
             </span>
+            {/* ▼▼▼ タイトル修正: 実態に合わせて「メール運用」等の表現に変更 ▼▼▼ */}
             <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-              Dropboxと5つのドメインをGoogleへ完全統合。<br />
+              Dropbox移行とメール運用のGoogle統合。<br />
               AI活用のための「最強の検索基盤」を構築
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
@@ -48,7 +50,7 @@ const CaseOndo = () => {
                 <span className="w-6 h-6 bg-rose-200 text-rose-700 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
                 <div>
                   <h3 className="font-bold text-lg mb-1">コストの二重発生と管理負荷</h3>
-                  <p className="text-slate-600">Dropbox (1TB) とGoogle Workspaceを併用しており、コストが重複。さらに5つの独自ドメインが別サーバーで管理され、運用が複雑化していました。</p>
+                  <p className="text-slate-600">Dropbox (1TB) とGoogle Workspaceを併用しており、コストが重複。さらにメールサーバーがGoogle Workspaceと別サービスで管理され、運用が複雑化していました。</p>
                 </div>
               </li>
               <li className="flex items-start">
@@ -83,10 +85,12 @@ const CaseOndo = () => {
               <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-sky-600"></span>
               <h3 className="text-xl font-bold text-sky-700 mb-2">Phase 1: 基盤整備と完全移行</h3>
               <div className="bg-white shadow-lg rounded-xl p-6 border border-slate-100">
-                <p className="mb-4">Pythonスクリプトによる自動化で、Dropbox上の全データをハッシュチェック（整合性確認）を行いながらGoogle Driveへ安全に移行。同時に5つのドメインをGoogle Workspaceへ一本化しました。</p>
+                {/* ▼▼▼ 修正: ドメイン統合の記述を修正 ▼▼▼ */}
+                <p className="mb-4">Pythonスクリプトによる自動化で、Dropbox上の全データをハッシュチェック（整合性確認）を行いながらGoogle Driveへ安全に移行。同時にメールサーバをGoogle Workspaceへ一元化しました。</p>
                 <div className="flex flex-wrap gap-2">
                   <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">Python移行</span>
-                  <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">ドメイン統合</span>
+                  {/* ▼▼▼ 修正: タグも修正 ▼▼▼ */}
+                  <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">メール一元化</span>
                   <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">コスト削減</span>
                 </div>
               </div>
@@ -108,12 +112,42 @@ const CaseOndo = () => {
               <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-sky-300"></span>
               <h3 className="text-xl font-bold text-sky-700 mb-2">Phase 3: 資産化 (Future)</h3>
               <div className="bg-white shadow-lg rounded-xl p-6 border border-slate-100">
-                <p className="mb-4">整理されたデータをNotebookLM等の生成AIに学習させ、社内ナレッジとして活用。議事録からのインサイト抽出や資料作成の自動化を目指す基盤が整いました。</p>
+                {/* ▼▼▼ 修正: 社長ご指摘の「基盤が整った」という表現に差し替え ▼▼▼ */}
+                <p className="mb-4">データが整理されたことで、生成AIを活用し、議事録からのインサイト抽出や資料作成の自動化を目指す基盤が整いました。</p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">NotebookLM</span>
+                  <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">NotebookLM基盤</span>
                   <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">ナレッジ活用</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ▼▼▼ 追加: お客様の声セクション ▼▼▼ */}
+        <section className="mb-20">
+          <div className="flex items-center mb-8">
+            <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+              <Quote className="w-6 h-6 text-amber-600" />
+            </div>
+            <h2 className="text-3xl font-bold text-slate-900">お客様の声</h2>
+          </div>
+          
+          <div className="bg-amber-50 rounded-2xl p-8 border border-amber-100 relative shadow-sm">
+            <div className="relative z-10 text-slate-700 leading-relaxed space-y-4">
+              <p>
+                「Dropboxに保存されている膨大なデータをGoogle Driveに移管するデータのお引越しが、こんなに手間がかかるものだとは正直思っていませんでした。
+              </p>
+              <p>
+                Ailafの皆様には、移管をきっかけに『情報を資産として活用できる』状態を作りましょうと前向きな提案をいただきました。
+                メールの不具合や検索についてなど、ブラックボックス化していたことも丁寧に説明いただき、一つ一つ納得しながら進められたことが非常にありがたかったです。
+              </p>
+              <p>
+                作成いただいた運用マニュアルも非常にわかりやすく、メンバーとの情報共有がよりスムーズに進みそうだと感じています。ありがとうございました！！」
+              </p>
+            </div>
+            <div className="mt-6 font-bold text-slate-900 text-right flex flex-col items-end">
+               <span>株式会社ONDO</span>
+               <span>代表取締役社長 谷 益美 様</span>
             </div>
           </div>
         </section>

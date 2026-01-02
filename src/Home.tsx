@@ -98,13 +98,15 @@ function App() {
 
   // ▼▼▼ 事例データの定義（ONDO様反映版 + Coming Soon 4枚構成） ▼▼▼
   const cases = [
-    {
+{
       id: 1,
       client: '株式会社ONDO様',
       category: 'クラウド移行 / 生成AI基盤',
-      title: 'Dropboxと5つのドメインをGoogleへ完全統合。AI活用のための「最強の検索基盤」を構築',
+      // ▼▼▼ タイトル修正: 「5つのドメインを...」→「メール運用を...」に変更 ▼▼▼
+      title: 'Dropbox移行とメール運用のGoogle統合。AI活用のための「最強の検索基盤」を構築',
       image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      description: '散在していたデータをPython活用で安全にGoogle Driveへ集約し、二重コストを削減。メール・ドメインも一本化することで、NotebookLM等の生成AIが全社データを横断的に活用できる土台を整えました。',
+      // ▼▼▼ 説明文修正: 実態に合わせて表現をマイルドに修正 ▼▼▼
+      description: '散在していたデータをPython活用で安全にGoogle Driveへ集約し、二重コストを削減。複雑化していたメール運用もGmailへ一元化することで、将来的に生成AIが全社データを活用できる土台を整えました。',
       comingSoon: false
     },
     {
