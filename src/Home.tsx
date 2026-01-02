@@ -106,7 +106,7 @@ function App() {
       title: 'Dropbox移行とメール運用のGoogle統合。AI活用のための「最強の検索基盤」を構築',
       image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       // ▼▼▼ 説明文修正: 実態に合わせて表現をマイルドに修正 ▼▼▼
-      description: '散在していたデータをPython活用で安全にGoogle Driveへ集約し、二重コストを削減。複雑化していたメール運用もGmailへ一元化することで、将来的に生成AIが全社データを活用できる土台を整えました。',
+      description: '散在していたデータをPython活用で安全にGoogle Driveへ集約し、二重コストを削減。複雑化していたメール運用もGoogle Workspaceへ一元化することで、将来的に生成AIが全社データを活用できる土台を整えました。',
       comingSoon: false
     },
     {
