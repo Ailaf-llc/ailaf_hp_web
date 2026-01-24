@@ -563,4 +563,15 @@ const CompanyInfoRow: React.FC<{ label: string; value: string; isEven?: boolean 
   </div>
 );
 
+const NoteIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M0 24V0h4.8v4.8h11.2a4.8 4.8 0 0 1 4.8 4.8v14.4h-4.8V9.6h-11.2v14.4H0z" />
+  </svg>
+);
+
 export default Home;

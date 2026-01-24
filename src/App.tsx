@@ -159,7 +159,8 @@ function App() {
                     className="text-gray-500 hover:text-[#2cb696] transition-colors duration-300"
                     aria-label="Note"
                   >
-                    <BookOpen className="w-5 h-5" />
+                    {/* ▼▼▼ BookOpen を NoteIcon に変更 ▼▼▼ */}
+                    <NoteIcon className="w-5 h-5" />
                   </a>
 
                   {/* X (Twitter) */}
@@ -207,7 +208,8 @@ function App() {
               {/* ▼▼▼ スマホメニュー用SNSアイコンエリア ▼▼▼ */}
               <div className="flex items-center space-x-8 px-3 py-4 mt-2 border-t border-gray-100">
                 <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#2cb696]">
-                  <BookOpen className="w-6 h-6" />
+                   {/* ▼▼▼ BookOpen を NoteIcon に変更 ▼▼▼ */}
+                  <NoteIcon className="w-6 h-6" />
                 </a>
                 <a href="https://x.com/Ailafllc202577" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black">
                   <XIcon className="w-6 h-6" />
@@ -452,7 +454,8 @@ function App() {
                   className="text-slate-400 hover:text-[#2cb696] transition-transform hover:scale-110 duration-300"
                   aria-label="Note"
                 >
-                  <BookOpen className="w-6 h-6" />
+                   {/* ▼▼▼ BookOpen を NoteIcon に変更 ▼▼▼ */}
+                  <NoteIcon className="w-6 h-6" />
                 </a>
 
                 {/* X */}
@@ -543,6 +546,17 @@ const XIcon = ({ className }: { className?: string }) => (
     aria-hidden="true"
   >
     <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+  </svg>
+);
+
+const NoteIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M4 24V9h5v2.5c.8-1.1 2.1-2.5 4.5-2.5 3.5 0 6.5 2.5 6.5 7v8h-5v-7c0-1.5-1-2.5-2.5-2.5S10 15.5 10 17v7H4z" />
   </svg>
 );
 
