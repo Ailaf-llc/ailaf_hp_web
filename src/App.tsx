@@ -159,8 +159,8 @@ function App() {
                     className="text-gray-500 hover:text-[#2cb696] transition-colors duration-300"
                     aria-label="Note"
                   >
-                    {/* ▼▼▼ BookOpen を NoteIcon に変更 ▼▼▼ */}
-                    <NoteIcon className="w-5 h-5" />
+                    {/* ▼▼▼ BookOpen を NoteIcon (w-10 h-10) に変更してサイズ調整 ▼▼▼ */}
+                    <NoteIcon className="w-10 h-10" />
                   </a>
 
                   {/* X (Twitter) */}
@@ -185,7 +185,7 @@ function App() {
                     <Linkedin className="w-5 h-5" />
                   </a>
                 </div>
-              </div> {/* ★修正: ここに抜けていた閉じタグを追加しました！ */}
+              </div>
 
               <div className="md:hidden flex items-center">
                 <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700">
@@ -208,8 +208,8 @@ function App() {
               {/* ▼▼▼ スマホメニュー用SNSアイコンエリア ▼▼▼ */}
               <div className="flex items-center space-x-8 px-3 py-4 mt-2 border-t border-gray-100">
                 <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#2cb696]">
-                   {/* ▼▼▼ BookOpen を NoteIcon に変更 ▼▼▼ */}
-                  <NoteIcon className="w-6 h-6" />
+                   {/* ▼▼▼ NoteIcon (w-12 h-12) に変更してサイズ調整 ▼▼▼ */}
+                  <NoteIcon className="w-12 h-12" />
                 </a>
                 <a href="https://x.com/Ailafllc202577" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black">
                   <XIcon className="w-6 h-6" />
@@ -454,8 +454,8 @@ function App() {
                   className="text-slate-400 hover:text-[#2cb696] transition-transform hover:scale-110 duration-300"
                   aria-label="Note"
                 >
-                   {/* ▼▼▼ BookOpen を NoteIcon に変更 ▼▼▼ */}
-                  <NoteIcon className="w-6 h-6" />
+                   {/* ▼▼▼ NoteIcon (w-12 h-12) に変更してサイズ調整 ▼▼▼ */}
+                  <NoteIcon className="w-12 h-12" />
                 </a>
 
                 {/* X */}
@@ -551,12 +551,12 @@ const XIcon = ({ className }: { className?: string }) => (
 
 const NoteIcon = ({ className }: { className?: string }) => (
   <svg 
-    viewBox="0 0 24 24" 
+    viewBox="0 0 493 493" // ★公式SVGのviewBoxが0 0 100 100などの場合はここも合わせて修正してください
     fill="currentColor" 
     className={className}
     aria-hidden="true"
   >
-    <path d="M4 24V9h5v2.5c.8-1.1 2.1-2.5 4.5-2.5 3.5 0 6.5 2.5 6.5 7v8h-5v-7c0-1.5-1-2.5-2.5-2.5S10 15.5 10 17v7H4z" />
+    <path d="m139.57,142.06c41.19,0,97.6-2.09,138.1-1.04,54.34,1.39,74.76,25.06,75.45,83.53.69,33.06,0,127.73,0,127.73h-58.79c0-82.83.35-96.5,0-122.6-.69-22.97-7.25-33.92-24.9-36.01-18.69-2.09-71.07-.35-71.07-.35v158.96h-58.79v-210.22Z" />
   </svg>
 );
 
