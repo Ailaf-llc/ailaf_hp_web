@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// ▼▼▼ HelmetProviderはmain.tsxにあるので、ここにはHelmetのみインポート ▼▼▼
+// ▼▼▼ HelmetProviderはmain.tsxにあるのでHelmetのみインポート ▼▼▼
 import { Helmet } from 'react-helmet-async';
 import CookieConsent from 'react-cookie-consent';
-import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, ArrowRight, BookOpen } from 'lucide-react';
+import { Menu, X as CloseIcon, ChevronDown, LinkIcon, BarChart3, Bot, Briefcase, Users, BrainCircuit, Building, Zap, Mail, BookOpen, Linkedin, ArrowRight } from 'lucide-react';
 
 import logo from './assets/logo.png';
 import miyanoImage from './assets/miyano.jpg';
 import yamazoeImage from './assets/yamazoe.jpg';
 import tabataImage from './assets/tabata.jpg';
-
 
 // スクロールで要素をフェードインさせるためのカスタムコンポーネント
 const FadeInSection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -66,15 +65,13 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children, onClick }) => {
   );
 };
 
-// メインのHomeコンポーネント
+// ▼▼▼ 修正: AppではなくHomeコンポーネントとして定義 ▼▼▼
 function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const companyName = "アイラフ合同会社 Ailaf LLC";
   const currentYear = new Date().getFullYear();
-
-  // ▼▼▼ Heroセクションの背景画像URL ▼▼▼
   const heroImageUrl = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg";
 
   // --- データ定義 ---
@@ -99,15 +96,14 @@ function Home() {
     { title: '常にアップデートされる最新知見', description: 'メンバーは全員、DXや事業開発の最前線で活躍する現役プレイヤー。日々アップデートされる現場のリアルな情報と最新技術トレンドを、お客様の課題解決に活かします。', icon: <BarChart3 className="w-8 h-8 mx-auto mb-4 text-sky-400" /> }
   ];
 
-  // ▼▼▼ 事例データの定義（4枚にして横スクロール用） ▼▼▼
   const cases = [
     {
       id: 1,
       client: '株式会社ONDO様',
       category: 'クラウド移行 / 生成AI基盤',
-      title: 'Dropboxと5つのドメインをGoogleへ完全統合。AI活用のための「最強の検索基盤」を構築',
+      title: 'Dropbox移行とメール運用のGoogle統合。AI活用のための「最強の検索基盤」を構築',
       image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      description: '散在していたデータをPython活用で安全にGoogle Driveへ集約し、二重コストを削減。メール・ドメインも一本化することで、NotebookLM等の生成AIが全社データを横断的に活用できる土台を整えました。',
+      description: '散在していたデータをPython活用で安全にGoogle Driveへ集約し、二重コストを削減。複雑化していたメール運用もGoogle Workspaceへ一元化することで、将来的に生成AIが全社データを活用できる土台を整えました。',
       comingSoon: false
     },
     {
@@ -129,7 +125,6 @@ function Home() {
       comingSoon: true
     },
     {
-      // ▼ 追加した4枚目
       id: 4,
       client: 'Coming Soon',
       category: '準備中',
@@ -140,6 +135,7 @@ function Home() {
     }
   ];
 
+  // ▼▼▼ 修正: 宮野さんと山添さんのLinkedInを追加 ▼▼▼
   const team = [
     { 
       name: '宮野 聖史', 
@@ -147,7 +143,6 @@ function Home() {
       image: miyanoImage, 
       bio: '製薬企業にて臨床開発業務からキャリアを開始し、別の製薬企業ではデジタルソリューション開発やDX推進に従事。戦略立案から現場実装まで幅広く携わる中で、より体系的に経営を学びたいと考え、早稲田大学大学院経営管理研究科（WBS）に進学。2025年3月に修了。事業や組織の全体像を設計するビジネスアーキテクトとして、戦略策定からシステム設計・導入定着まで一貫してリードできる点を強みとする。多様な働き方が可能となった現在、より直接的に社会へ価値を還元したいとの思いから、志を同じくする仲間とともに2025年に兼業集団としてアイラフを共同設立。各メンバーが本業で培った専門性を持ち寄ることで、多角的な視点と柔軟な発想を活かした少数精鋭のチームとして活動している。中小企業の持続的成長を支援し、社会に直接的に貢献することを目指している。', 
       links: [
-        // ▼▼▼ 追加: 宮野さんのLinkedIn ▼▼▼
         { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/seishi-miyano-b02145185' }
       ] 
     },
@@ -157,7 +152,6 @@ function Home() {
       image: yamazoeImage, 
       bio: '国内外の大手企業からスタートアップまで幅広く経験し、デジタル広告と動画ソリューション領域で営業・事業開発やパートナーシップ構築に従事。事業のGTM設計やスケールアップに強みを持つ。', 
       links: [
-        // ▼▼▼ 追加: 山添さんのLinkedIn ▼▼▼
         { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/tatsuro-yamazoe-519ab543/' }
       ] 
     },
@@ -184,10 +178,7 @@ function Home() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    // HelmetProviderは削除しました (main.tsxにあるため)
     <div className="min-h-screen bg-white font-sans">
-      
-      {/* ▼▼▼ 追加: SEO用メタタグ設定 ▼▼▼ */}
       <Helmet>
         <title>Ailaf LLC | DXを、もっと身近に。あなたのペースで。</title>
         <meta name="description" content="アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。" />
@@ -212,16 +203,21 @@ function Home() {
               <NavLink to="#cases">事例紹介</NavLink>
               <NavLink to="#team">Team</NavLink>
               <NavLink to="#company-profile">会社概要</NavLink>
-              <a 
-                href="https://note.com/ailaf_038" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center text-gray-600 hover:text-[#2cb696] transition-colors duration-300 font-bold"
-              >
-                <BookOpen className="w-4 h-4 mr-1" />
-                Note
-              </a>
+              
+              <div className="flex items-center space-x-5 pl-4 border-l border-gray-200">
+                {/* ▼▼▼ NoteIconに変更（サイズ調整済み） ▼▼▼ */}
+                <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#2cb696] transition-colors duration-300" aria-label="Note">
+                  <NoteIcon className="w-10 h-10" />
+                </a>
+                <a href="https://x.com/Ailafllc202577" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black transition-colors duration-300" aria-label="X">
+                  <XIcon className="w-5 h-5" />
+                </a>
+                <a href="https://www.linkedin.com/company/ailaf-llc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#0a66c2] transition-colors duration-300" aria-label="LinkedIn">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </div>
             </div>
+
             <div className="md:hidden flex items-center">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700">
                 {isMenuOpen ? <CloseIcon /> : <Menu />}
@@ -239,24 +235,26 @@ function Home() {
             <NavLink to="#cases" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">事例紹介</span></NavLink>
             <NavLink to="#team" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">Team</span></NavLink>
             <NavLink to="#company-profile" onClick={closeMenu}><span className="block px-3 py-2 text-gray-700">会社概要</span></NavLink>
-            <a 
-              href="https://note.com/ailaf_038"
-              target="_blank" 
-              rel="noopener noreferrer"
-              onClick={closeMenu}
-              className="flex items-center px-3 py-2 text-gray-700 hover:text-[#2cb696]"
-            >
-              <BookOpen className="w-4 h-4 mr-2" />
-              <span className="font-bold">公式Note</span>
-            </a>
+            
+            <div className="flex items-center space-x-8 px-3 py-4 mt-2 border-t border-gray-100">
+              {/* ▼▼▼ NoteIconに変更（サイズ調整済み） ▼▼▼ */}
+              <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#2cb696]">
+                <NoteIcon className="w-12 h-12" />
+              </a>
+              <a href="https://x.com/Ailafllc202577" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black">
+                <XIcon className="w-6 h-6" />
+              </a>
+              <a href="https://www.linkedin.com/company/ailaf-llc" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#0a66c2]">
+                <Linkedin className="w-6 h-6" />
+              </a>
+            </div>
           </div>
         </div>
       )}
 
       <main>
-        {/* ▼▼▼ Hero Section: 背景画像を追加 ▼▼▼ */}
+        {/* Hero Section */}
         <section id="hero" className="relative text-white">
-          {/* 背景画像とオーバーレイ */}
           <div className="absolute inset-0">
             <div
               className="absolute inset-0 bg-cover bg-center"
@@ -265,7 +263,6 @@ function Home() {
             <div className="absolute inset-0 bg-slate-900/70"></div>
           </div>
 
-          {/* コンテンツ */}
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-20 md:py-0">
               <FadeInSection>
@@ -278,7 +275,6 @@ function Home() {
                     アイラフは、大手企業でDXの最前線を担う現役プロフェッショナルによるチームです。<br />
                     専門用語ではない「現場で使える言葉」で、あなたの会社の課題解決を伴走します。
                   </p>
-                  {/* ▼▼▼ 修正: ボタンを有効化し、クリックで#contactへ飛ぶように変更 ▼▼▼ */}
                   <a
                     href="#contact"
                     onClick={(e) => {
@@ -335,6 +331,7 @@ function Home() {
           </div>
         </section>
 
+        {/* 事例紹介: 横スクロール (カルーセル) 形式 */}
         <section id="cases" className="py-20 lg:py-28 bg-slate-50 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
@@ -345,12 +342,10 @@ function Home() {
                 </p>
               </div>
 
-              {/* ▼▼▼ 横スクロールエリア (Scrollbarを隠してスナップさせる) ▼▼▼ */}
               <div className="flex overflow-x-auto pb-8 -mx-4 px-4 space-x-6 snap-x snap-mandatory scrollbar-hide">
                 {cases.map((item) => (
                   <div 
                     key={item.id} 
-                    // ▼▼▼ カードの幅を固定 (スマホ:画面の85%, PC:400px) ▼▼▼
                     className={`flex-shrink-0 w-[85vw] md:w-[400px] snap-center group bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300 flex flex-col ${
                       item.comingSoon 
                         ? 'opacity-80 pointer-events-none grayscale'
@@ -401,13 +396,13 @@ function Home() {
           </div>
         </section>
 
-        <section id="team" className="py-20 lg:py-28 bg-slate-50">
+        <section id="team" className="py-20 lg:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeInSection>
               <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-gray-800">Our Expert Team</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {team.map((member) => (
-                  <div key={member.name} className="bg-white p-8 rounded-xl shadow-xl flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                  <div key={member.name} className="bg-white p-8 rounded-xl shadow-xl flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-slate-100">
                     <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover ring-4 ring-slate-200" />
                     <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
                     <p className="text-sky-600 font-semibold mb-4">{member.role}</p>
@@ -484,17 +479,16 @@ function Home() {
           </div>
         </section>
 
-          {/* Contact Section */}
+        {/* Contact Section */}
         <section id="contact" className="py-20 lg:py-28 bg-slate-900 text-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <FadeInSection>
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">お問い合わせ</h2>
               <p className="text-lg text-slate-300 mb-10 leading-relaxed">
-                お問い合わせフォームは現在準備中ですが、メールでのご相談は随時受け付けております。<br />
+                メールでのご相談を随時受け付けております。<br />
                 業務改善のご相談、費用感の確認など、まずはお気軽にご連絡ください。
               </p>
               
-              {/* ▼▼▼ 追加: メールリンクをボタンとして大きく表示 ▼▼▼ */}
               <a 
                 href="mailto:contact@ailaf.co.jp"
                 className="group inline-flex items-center justify-center bg-white text-slate-900 hover:bg-sky-50 px-8 py-4 rounded-xl font-bold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
@@ -508,22 +502,56 @@ function Home() {
             </FadeInSection>
           </div>
         </section>
-        </main>
+      </main>
 
       <footer className="bg-slate-900 text-slate-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <img src={logo} alt={companyName} className="h-12 w-auto mb-4 mx-auto" />
             <h3 className="text-white text-lg font-semibold mb-2">{companyName}</h3>
-            {/* ▼▼▼ 追加: フッターにもメールアドレスを表示 ▼▼▼ */}
+            
             <a 
               href="mailto:contact@ailaf.co.jp" 
-              className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300"
+              className="inline-flex items-center text-slate-400 hover:text-sky-400 transition-colors duration-300 mb-6"
             >
               <Mail className="w-4 h-4 mr-2" />
               contact@ailaf.co.jp
             </a>
+
+            <div className="flex justify-center items-center space-x-6 mb-8">
+              {/* ▼▼▼ NoteIconに変更（サイズ調整済み） ▼▼▼ */}
+              <a 
+                href="https://note.com/ailaf_038" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-slate-400 hover:text-[#2cb696] transition-transform hover:scale-110 duration-300"
+                aria-label="Note"
+              >
+                <NoteIcon className="w-12 h-12" />
+              </a>
+
+              <a 
+                href="https://x.com/Ailafllc202577" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-slate-400 hover:text-white transition-transform hover:scale-110 duration-300"
+                aria-label="X"
+              >
+                <XIcon className="w-6 h-6" />
+              </a>
+
+              <a 
+                href="https://www.linkedin.com/company/ailaf-llc" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-slate-400 hover:text-[#0a66c2] transition-transform hover:scale-110 duration-300"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-6 h-6" />
+              </a>
+            </div>
           </div>
+
           <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-8">
             <NavLink to="#services">事業内容</NavLink>
             <NavLink to="#strengths">選ばれる理由</NavLink>
@@ -531,24 +559,21 @@ function Home() {
             <NavLink to="#team">Team</NavLink>
             <NavLink to="#company-profile">会社概要</NavLink>
             <NavLink to="#faq">FAQ</NavLink>
-            <a href="https://note.com/ailaf_038" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#2cb696] transition-colors">
-              Note
-            </a>
           </div>
+
           <div className="mt-8 pt-8 border-t border-slate-700 text-center">
             <p className="text-sm">&copy; {currentYear} {companyName}. All rights reserved.</p>
           </div>
         </div>
       </footer>
-      
-      {/* ▼▼▼ 追加: クッキー同意バナー ▼▼▼ */}
+
       <CookieConsent
         location="bottom"
         buttonText="同意する"
         cookieName="ailaf-cookie-consent"
-        style={{ background: "#1e293b", alignItems: "center" }} // slate-800
+        style={{ background: "#1e293b", alignItems: "center" }}
         buttonStyle={{ 
-          background: "#0284c7", // sky-600
+          background: "#0284c7",
           color: "#ffffff", 
           fontSize: "13px", 
           borderRadius: "6px",
@@ -581,9 +606,22 @@ const CompanyInfoRow: React.FC<{ label: string; value: string; isEven?: boolean 
   </div>
 );
 
+// X (旧Twitter) のロゴ
+const XIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+  </svg>
+);
+
+// ▼▼▼ 公式Noteアイコンを追加 ▼▼▼
 const NoteIcon = ({ className }: { className?: string }) => (
   <svg 
-    viewBox="0 0 493 493" // ★公式SVGのviewBoxが0 0 100 100などの場合はここも合わせて修正してください
+    viewBox="0 0 493 493" 
     fill="currentColor" 
     className={className}
     aria-hidden="true"
@@ -592,4 +630,5 @@ const NoteIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// ▼▼▼ 修正: export default Home; に変更 ▼▼▼
 export default Home;
