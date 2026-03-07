@@ -15,16 +15,18 @@ const cases = [
     title: 'Dropbox移行とメール運用のGoogle統合。AI活用のための「最強の検索基盤」を構築',
     image: case1Image,
     description: '散在していたデータをPython活用で安全にGoogle Driveへ集約し、二重コストを削減。複雑化していたメール運用もGoogle Workspaceへ一元化することで、将来的に生成AIが全社データを活用できる土台を整えました。',
-    comingSoon: false
+    comingSoon: false,
+    link: '/case/ondo'
   },
   {
     id: 2,
-    client: 'Coming Soon',
-    category: '準備中',
-    title: '次なる成功事例を準備中です',
+    client: 'D.G.様',
+    category: 'リアルライフデザイン',
+    title: '自分のキャリアを、構造から再設計する',
     image: case2Image,
-    description: '現在、新たなプロジェクトが進行中です。公開まで今しばらくお待ちください。',
-    comingSoon: true
+    description: '転職の軸や強みが言語化できずにモヤモヤしていた状態から、経験を「価値提供」の視点で整理。キャリアの構造整理と職務経歴書の再構築を通じて、迷いなく自信を持って選考に臨める状態へと導きました。',
+    comingSoon: false,
+    link: '/case/reallife-design'
   },
   {
     id: 3,
@@ -98,8 +100,10 @@ const CasesSection: React.FC = () => {
                     {item.description}
                   </p>
                   
-                  {!item.comingSoon && (
-                    <Link to="/case/ondo" className="flex items-center text-sky-600 font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4">
+                  {!item.comingSoon && item.link && (
+                    <Link to={item.link} className={`flex items-center font-bold text-sm mt-auto group-hover:underline decoration-2 underline-offset-4 ${
+                      item.category === 'リアルライフデザイン' ? 'text-emerald-600' : 'text-sky-600'
+                    }`}>
                       詳細を見る <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
                     </Link>
                   )}
