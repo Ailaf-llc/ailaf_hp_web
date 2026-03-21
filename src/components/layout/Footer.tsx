@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { NoteIcon, XIcon } from '../ui/Icons';
 import NavLink from '../ui/NavLink';
 import logo from '../../assets/logo.png';
@@ -63,6 +64,11 @@ const Footer: React.FC = () => {
           <NavLink to="#team">Team</NavLink>
           <NavLink to="#company-profile">会社概要</NavLink>
           <NavLink to="#faq">FAQ</NavLink>
+        </div>
+
+        <div className="flex justify-center space-x-6 text-xs text-slate-500 mb-8">
+          <Link to="/privacy" className="hover:text-slate-300 transition-colors">プライバシーポリシー</Link>
+          <Link to="/terms" className="hover:text-slate-300 transition-colors">サイト利用規約</Link>
         </div>
 
         <div className="mt-8 pt-8 border-t border-slate-700 text-center">

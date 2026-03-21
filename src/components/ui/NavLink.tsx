@@ -8,9 +8,15 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ to, children, onClick }) => {
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
     const element = document.querySelector(to);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      event.preventDefault();
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else if (to.startsWith('#')) {
+      // If we are on a subpage, element won't be found. Go to home page with hash.
+      window.location.href = `/${to}`;
+      return;
+    }
     if (onClick) {
       onClick();
     }
