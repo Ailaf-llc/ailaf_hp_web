@@ -127,8 +127,6 @@ const PrivacyPolicy: React.FC = () => {
             </p>
             <div className="bg-slate-50 p-6 rounded-lg border border-slate-100 mt-4 text-slate-700 leading-relaxed font-medium">
               <p>アイラフ合同会社 (Ailaf LLC)</p>
-              <p>代表社員 宮野 聖史</p>
-              <p>東京都（※詳細な所在地については、ご請求に基づき遅滞なく開示いたします）</p>
               <p>Email: <a href="mailto:contact@ailaf.co.jp" className="text-sky-600 hover:underline">contact@ailaf.co.jp</a></p>
             </div>
           </section>
