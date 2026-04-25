@@ -3,7 +3,7 @@ import { LinkIcon } from 'lucide-react';
 import FadeInSection from '../ui/FadeInSection';
 
 import miyanoImage from '../../assets/miyano.jpg';
-import yamazoeImage from '../../assets/yamazoe.jpg';
+import yamazoeImage from '../../assets/Tatsuro Yamazoe_202604.png';
 import tabataImage from '../../assets/tabata.jpg';
 
 const team = [

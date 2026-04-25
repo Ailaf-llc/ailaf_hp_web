@@ -1,6 +1,6 @@
 import React from 'react';
 import miyanoImage from '../assets/miyano.jpg';
-import yamazoeImage from '../assets/yamazoe.jpg';
+import yamazoeImage from '../assets/Tatsuro Yamazoe_202604.png';
 import tabataImage from '../assets/tabata.jpg';
 
 
