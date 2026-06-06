@@ -20,7 +20,7 @@ const PrivacyPolicy: React.FC = () => {
         <h1 className="text-3xl font-bold text-slate-900 mb-2">プライバシーポリシー</h1>
         <div className="text-slate-500 mb-12 space-y-1">
           <p>制定日：2025年7月7日</p>
-          <p>最終改定日：2026年4月11日</p>
+          <p>最終改定日：2026年6月6日</p>
         </div>
 
         <div className="bg-white px-8 py-12 lg:px-12 rounded-xl shadow-sm border border-slate-100 space-y-10">
