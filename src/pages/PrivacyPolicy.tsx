@@ -20,7 +20,7 @@ const PrivacyPolicy: React.FC = () => {
         <h1 className="text-3xl font-bold text-slate-900 mb-2">プライバシーポリシー</h1>
         <div className="text-slate-500 mb-12 space-y-1">
           <p>制定日：2025年7月7日</p>
-          <p>最終改定日：2026年3月21日</p>
+          <p>最終改定日：2026年4月11日</p>
         </div>
 
         <div className="bg-white px-8 py-12 lg:px-12 rounded-xl shadow-sm border border-slate-100 space-y-10">
@@ -54,20 +54,21 @@ const PrivacyPolicy: React.FC = () => {
               当社は、取得した個人情報を以下の目的で利用します。
             </p>
             <ul className="list-disc pl-6 space-y-2 text-slate-700">
-              <li>本サービスの提供・運営</li>
-              <li>お問い合わせへの対応（本人確認を含む）</li>
-              <li>サービスに関するご案内・連絡</li>
-              <li>契約の履行および請求・支払い管理</li>
-              <li>サービス改善および新サービスの検討</li>
-              <li>必要に応じた重要お知らせの通知</li>
+              <li>当社サービス（BX/DX推進支援、業務改善コンサルティング、システム導入サポート、リアルライフデザインコーチング等）の提供・運営・および管理のため</li>
+              <li>お問い合わせ、ご相談への対応および本人確認のため</li>
+              <li>当社サービスに関連する新機能、更新情報、セミナー・イベントのご案内、および当社が提供する他サービスのご案内のため</li>
+              <li>契約の履行、請求、支払い管理およびこれらに付随する連絡のため</li>
+              <li>サービス改善、新サービスの検討の開発に向けた分析およびアンケート調査のため</li>
+              <li>メンテナンス情報や規約変更など、運営上の重要な通知のため</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第4条（利用目的の変更）</h2>
-            <p className="leading-relaxed text-slate-700">
-              当社は、利用目的が変更前と関連性を有すると合理的に認められる場合に限り、個人情報の利用目的を変更するものとします。
-            </p>
+            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+              <li>当社は、利用目的が変更前と関連性を有すると合理的に認められる場合に限り、個人情報の利用目的を変更するものとします。</li>
+              <li>利用目的の変更を行った場合には、変更後の目的について、当社所定の方法により速やかに本人に通知し、または本ウェブサイト上に公表するものとします。</li>
+            </ul>
           </section>
 
           <section>
@@ -85,9 +86,10 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第6条（個人情報の管理）</h2>
-            <p className="leading-relaxed text-slate-700">
-              当社は、個人情報の正確性および安全性を確保するため、適切な安全管理措置を講じます。
-            </p>
+            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+              <li>当社は、個人情報の正確性および安全性を確保するため、適切な安全管理措置を講じます。</li>
+              <li>当社は、利用目的の達成に必要な範囲内において、個人情報の取扱いの全部または一部を外部に委託する場合があります。この場合、当社は委託先に対して必要かつ適切な監督を行い、個人情報の安全管理が図られるよう努めます。</li>
+            </ul>
           </section>
 
           <section>
@@ -100,16 +102,14 @@ const PrivacyPolicy: React.FC = () => {
           <section>
             <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第8条（Cookie等の利用）</h2>
             <p className="leading-relaxed text-slate-700">
-              当社は、サービスの利便性向上やアクセス解析のため、Cookie等の技術を使用する場合があります。<br />
-              利用者はブラウザ設定によりCookieの受け取りを拒否することができます。
+              当社は、サービスの利便性向上やアクセス解析のため、Cookie等の技術を使用する場合があります。利用者はブラウザ設定によりCookieの受け取りを拒否することができます。
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第9条（アクセス解析ツール）</h2>
             <p className="leading-relaxed text-slate-700">
-              当社は、Google Analytics等のアクセス解析ツールを利用する場合があります。<br />
-              これにより収集されるデータは匿名であり、個人を特定するものではありません。
+              当社は、Google Analytics等のアクセス解析ツールを利用する場合があります。これにより収集されるデータは匿名であり、個人を特定するものではありません。
             </p>
           </section>
 
