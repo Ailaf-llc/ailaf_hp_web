@@ -20,7 +20,7 @@ const TermsOfUse: React.FC = () => {
         <h1 className="text-3xl font-bold text-slate-900 mb-2">サイト利用規約</h1>
         <div className="text-slate-500 mb-12 space-y-1">
           <p>制定日：2025年7月7日</p>
-          <p>最終改定日：2026年3月21日</p>
+          <p>最終改定日：2026年6月6日</p>
         </div>
 
         <div className="bg-white px-8 py-12 lg:px-12 rounded-xl shadow-sm border border-slate-100 space-y-10">
@@ -30,20 +30,28 @@ const TermsOfUse: React.FC = () => {
 
           <section>
             <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第1条（適用）</h2>
-            <p className="leading-relaxed text-slate-700">
-              本規約は、利用者と当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。当社等の提供するコンサルティング業務やコーチング業務を正式に契約する場合には、別途定める業務委託契約書等の規定が優先して適用されます。
-            </p>
+            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+              <li>本規約は、利用者と当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</li>
+              <li>当社等が提供するコンサルティング業務やコーチング業務を正式に契約する場合には、別途定める業務委託契約書等の規定が優先して適用されます。</li>
+            </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第2条（サービス内容）</h2>
             <p className="leading-relaxed text-slate-700">
-              当社は、中小企業向けのDX・業務改善支援サービス、DX組織の内製化・スキルトランスファー、および学生・若手向けのキャリア・ライフデザインコーチング等の情報提供を行います。
+              当社は、BX/DX・業務改善支援サービス、DX組織の内製化・スキルトランスファー、およびキャリア・ライフデザイン、コーチング等の情報提供を行います。
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第3条（禁止事項）</h2>
+            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第3条（個人情報の取扱い）</h2>
+            <p className="leading-relaxed text-slate-700">
+              当社は、本サービスの利用によって取得する個人情報については、当社が別途定める「プライバシーポリシー」に従い適切に取り扱うものとします。
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第4条（禁止事項）</h2>
             <p className="leading-relaxed mb-4 text-slate-700">
               利用者は、本サービスの利用にあたり、以下の行為をしてはなりません。
             </p>
@@ -59,14 +67,14 @@ const TermsOfUse: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第4条（知的財産権）</h2>
+            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第5条（知的財産権）</h2>
             <p className="leading-relaxed text-slate-700">
               本ウェブサイトに掲載されている文章、画像、デザイン、ロゴマーク等に関する著作権、商標権その他の知的財産権は、当社または正当な権利者に帰属します。無断での複製、転載、改変、頒布等を禁止します。
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第5条（免責事項）</h2>
+            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第6条（免責事項）</h2>
             <div className="space-y-4 text-slate-700 leading-relaxed">
               <p>1. 当社は、本サービスに事実上または法律上の瑕疵（安全性、信頼性、正確性、完全性、有効性、特定の目的への適合性、セキュリティなどに関する欠陥、エラーやバグ、権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。</p>
               <p>2. 当社が提供するDX支援やコーチングに関する各種情報は、成果や特定の目的の達成を絶対的に保証するものではありません。情報の利用は利用者の自己責任において行われるものとします。</p>
@@ -75,14 +83,22 @@ const TermsOfUse: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第6条（サービス内容の変更等）</h2>
+            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第7条（サービス内容の変更等）</h2>
             <p className="leading-relaxed text-slate-700">
               当社は、利用者に通知することなく、本サービスの内容を変更しまたは本サービスの提供を中止することができるものとし、これによって利用者に生じた損害について一切の責任を負いません。
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第7条（準拠法・裁判管轄）</h2>
+            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第8条（利用規約の変更）</h2>
+            <ul className="list-disc pl-6 space-y-2 text-slate-700">
+              <li>当社は、必要と判断した場合には、利用者に個別の通知をすることなく本規約を変更することができるものとします。</li>
+              <li>変更後の利用規約は、本ウェブサイト上に掲示した時点から効力を生じるものとし、利用者が規約変更後に本サービスを利用した場合は、変更後の規約に同意したものとみなします。</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold text-sky-800 border-l-4 border-sky-600 pl-3 mb-4">第9条（準拠法・裁判管轄）</h2>
             <p className="leading-relaxed text-slate-700">
               本規約の解釈にあたっては、日本法を準拠法とします。本サービスに関して紛争が生じた場合には、東京地方裁判所を第一審の専属的合意管轄裁判所とします。
             </p>
